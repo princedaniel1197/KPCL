@@ -28,11 +28,21 @@ FEED = "clearances"
 SEARCH_URL = "https://parivesh.nic.in/newupgrade/#/trackYourProposal"
 MANUAL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".manual")
 
-KPCL = re.compile(
-    r"karnataka power|\bkpcl\b|raichur.*(power|thermal)|bellary.*thermal|"
-    r"ballari.*thermal|yeramarus|sharavath|\brtps\b|\bbtps\b|\bytps\b",
+# A proposal is KPCL's only if EITHER the user agency is KPCL specifically
+# (excludes KPTCL transmission and KNNL/Neeravari irrigation), OR the project is
+# an unambiguous KPCL generating asset. Bare "Sharavathi"/"Varahi" is NOT enough
+# — those names also appear on region drinking-water and KNNL irrigation works.
+KPCL_AGENCY = re.compile(r"karnataka power corporation", re.I)
+KPCL_PROJECT = re.compile(
+    r"(sharavath|varahi)\s*pumped\s*storage|pumped\s*storage.*(sharavath|varahi)|"
+    r"(raichur|bellary|ballari)\s*thermal|yeramarus|\b(rtps|btps|ytps)\b|"
+    r"sharavath\w*\s*generating",
     re.I,
 )
+
+
+def _is_kpcl(name: str, agency: str) -> bool:
+    return bool(KPCL_AGENCY.search(agency) or KPCL_PROJECT.search(name))
 
 # Public-record statutory-gate timeline for the Sharavathi PSP (the A2 story:
 # NBWL approved while Forest Clearance was rejected and the project put on hold).
@@ -48,55 +58,63 @@ SHARAVATHI_GATES = [
 ]
 
 
-def _read_export() -> list[dict]:
-    """Parse the newest Parivesh 'Track Your Proposal' Excel export in .manual."""
-    files = sorted(
-        glob.glob(os.path.join(MANUAL_DIR, "*.xlsx")),
-        key=os.path.getmtime, reverse=True,
-    )
-    export = next((f for f in files if "proposal" in os.path.basename(f).lower()
-                   or "parivesh" in os.path.basename(f).lower()), files[0] if files else None)
-    if not export:
-        return []
+def _read_exports() -> list[dict]:
+    """Parse every Parivesh 'Track Your Proposal' Excel export in .manual and
+    merge KPCL proposals across clearance types (EC / WL / FC). The EC export
+    uses a 'Project Proponent' column; the WL/FC exports use 'User Agency' and
+    add 'Area (ha)' — handle both. Dedupe by proposal number."""
     import openpyxl
 
-    wb = openpyxl.load_workbook(export, read_only=True, data_only=True)
-    rows = list(wb.active.iter_rows(values_only=True))
-    if not rows:
-        return []
-    hdr = [str(h).strip() if h is not None else "" for h in rows[0]]
-
-    def col(row, name):
+    seen: set[str] = set()
+    out: list[dict] = []
+    for path in sorted(glob.glob(os.path.join(MANUAL_DIR, "*.xlsx"))):
         try:
-            return row[hdr.index(name)]
-        except (ValueError, IndexError):
+            wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        except Exception:
+            continue
+        rows = list(wb.active.iter_rows(values_only=True))
+        if not rows:
+            continue
+        hdr = [str(h).strip() if h is not None else "" for h in rows[0]]
+
+        def col(row, *names):
+            for n in names:
+                if n in hdr:
+                    v = row[hdr.index(n)]
+                    if v is not None:
+                        return v
             return None
 
-    out = []
-    for r in rows[1:]:
-        name = str(col(r, "Project Name") or "")
-        prop = str(col(r, "Project Proponent") or "")
-        if not KPCL.search(f"{name} {prop}"):
-            continue
-        out.append({
-            "proposalNo": str(col(r, "Proposal No") or "").strip(),
-            "clearanceType": str(col(r, "Clearance Type") or "").strip(),
-            "projectName": name.strip(),
-            "proponent": prop.strip(),
-            "submitted": str(col(r, "Date of Submission") or "").strip(),
-            "officialStatus": str(col(r, "Proposal Status") or "").strip(),
-            "cafNumber": str(col(r, "CAF Number") or "").strip(),
-        })
+        for r in rows[1:]:
+            name = str(col(r, "Project Name") or "")
+            prop = str(col(r, "Project Proponent", "User Agency") or "")
+            if not _is_kpcl(name, prop):
+                continue
+            no = str(col(r, "Proposal No") or "").strip()
+            if not no or no in seen:
+                continue
+            seen.add(no)
+            ctype = str(col(r, "Clearance Type") or "").strip()
+            gate = ("WL" if no.startswith("WL") else "FC" if no.startswith("FP") else
+                    "EC" if no.startswith("IA") else "—")
+            out.append({
+                "proposalNo": no,
+                "gate": gate,
+                "clearanceType": ctype,
+                "projectName": name.strip(),
+                "submitted": str(col(r, "Date of Submission") or "").strip(),
+                "officialStatus": str(col(r, "Proposal Status") or "").strip(),
+                "area": str(col(r, "Area (ha)") or "").strip(),
+            })
     return out
 
 
 def run(http: Http) -> ScrapeResult:
     robots = robots_check.status(SEARCH_URL)
-    kpcl = _read_export()
+    kpcl = _read_exports()
 
-    # Build the flagship Sharavathi record, enriched with the real proposal
-    # number + official status from the export when available.
-    sharavathi_row = next((r for r in kpcl if "sharavath" in r["projectName"].lower()), None)
+    # The flagship EC proposal (ToR Granted) anchors the gate timeline.
+    ec_row = next((r for r in kpcl if r["gate"] == "EC" and "sharavath" in r["projectName"].lower()), None)
     sharavathi = {
         "proposalTitle": "Sharavathi Pumped Storage Project (2000 MW)",
         "proponent": "Karnataka Power Corporation Limited (KPCL)",
@@ -104,12 +122,14 @@ def run(http: Http) -> ScrapeResult:
         "forestDiversionAcres": 287,
         "forestHectares": 140,
         "sanctuary": "Sharavathi Lion-Tailed Macaque Sanctuary (Western Ghats)",
-        "proposalNo": (sharavathi_row or {}).get("proposalNo") or "IA/KA/RIV/447282/2023",
-        "officialStatus": (sharavathi_row or {}).get("officialStatus") or "ToR Granted",
-        "submitted": (sharavathi_row or {}).get("submitted") or "21/10/2023",
+        "proposalNo": (ec_row or {}).get("proposalNo") or "IA/KA/RIV/447282/2023",
+        "officialStatus": (ec_row or {}).get("officialStatus") or "ToR Granted",
+        "submitted": (ec_row or {}).get("submitted") or "21/10/2023",
         "gates": SHARAVATHI_GATES,
         "litigation": "Karnataka High Court issued notices on a PIL challenging the "
                       "State Wildlife Board and NBWL in-principle approvals.",
+        # Every real KPCL Parivesh proposal (EC / WL / FC) with official status.
+        "kpclProposals": sorted(kpcl, key=lambda x: (x["projectName"], x["gate"])),
         "provenance": "REAL",
         "sources": [
             "https://parivesh.nic.in/  (Track Your Proposal export)",
@@ -117,15 +137,14 @@ def run(http: Http) -> ScrapeResult:
         ],
     }
 
-    # Other KPCL proposals from the export (breadth) — real proposal-level rows.
-    others = [r for r in kpcl if "sharavath" not in r["projectName"].lower()]
-
-    payload = {"flagship": [sharavathi], "kpclProposals": kpcl, "otherCount": len(others)}
-    note = (f"Parivesh export parsed: {len(kpcl)} KPCL proposal(s), "
-            f"Sharavathi real proposal {sharavathi['proposalNo']} ({sharavathi['officialStatus']})."
+    gate_counts = {}
+    for r in kpcl:
+        gate_counts[r["gate"]] = gate_counts.get(r["gate"], 0) + 1
+    note = (f"Parivesh exports parsed: {len(kpcl)} real KPCL proposals "
+            f"({', '.join(f'{v} {k}' for k, v in sorted(gate_counts.items()))}); "
+            f"flagship {sharavathi['proposalNo']} ({sharavathi['officialStatus']})."
             if kpcl else
-            "No Parivesh export in .manual/; using curated Sharavathi timeline. "
-            "Export from Track Your Proposal → Advanced Search and drop the .xlsx in scrapers/.manual/.")
+            "No Parivesh export in .manual/; using curated Sharavathi timeline.")
 
     return ScrapeResult(
         feed=FEED, provenance=Provenance.REAL, source_url=SEARCH_URL,

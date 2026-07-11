@@ -1,26 +1,8 @@
 {
-  "generatedAt": "2026-07-11T13:31:17Z",
-  "sources": [
-    {
-      "feed": "annual_report",
-      "label": "REAL KPCL generation/PLF + reservoirs",
-      "powers": [
-        "/plants",
-        "/plants/hydro",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "LIVE",
-      "source_url": "https://kpcl.karnataka.gov.in (Annual Report PDF)",
-      "robots": "",
-      "note": "KPCL Annual Report 2024-25: 18 stations (real generation), 10 reservoirs.",
-      "count": 3,
-      "calibration": false,
-      "fetched_at": "2026-07-11T13:31:17Z"
-    }
-  ],
+  "generatedAt": "2026-07-11T14:39:03Z",
+  "sources": [],
   "summary": {
-    "live": 1,
+    "live": 0,
     "pending": 0,
     "skipped": 0,
     "stale": 0,

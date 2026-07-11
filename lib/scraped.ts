@@ -36,6 +36,15 @@ export interface ClearanceRecord {
   officialStatus?: string;
   submitted?: string;
   gates: { key: string; label: string; status: string; date: string; note: string }[];
+  kpclProposals?: {
+    proposalNo: string;
+    gate: string;
+    clearanceType: string;
+    projectName: string;
+    submitted: string;
+    officialStatus: string;
+    area?: string;
+  }[];
   litigation?: string;
   sources?: string[];
 }

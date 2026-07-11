@@ -2,10 +2,10 @@
   "feed": "clearances",
   "provenance": "REAL",
   "source_url": "https://parivesh.nic.in/newupgrade/#/trackYourProposal",
-  "fetched_at": "2026-07-11T13:16:20Z",
+  "fetched_at": "2026-07-11T14:40:34Z",
   "status": "LIVE",
   "robots": "allowed",
-  "note": "Parivesh export parsed: 1 KPCL proposal(s), Sharavathi real proposal IA/KA/RIV/447282/2023 (ToR Granted).",
+  "note": "Parivesh exports parsed: 12 real KPCL proposals (1 EC, 1 FC, 10 WL); flagship IA/KA/RIV/447282/2023 (ToR Granted).",
   "records": [
     {
       "proposalTitle": "Sharavathi Pumped Storage Project (2000 MW)",
@@ -48,6 +48,116 @@
         }
       ],
       "litigation": "Karnataka High Court issued notices on a PIL challenging the State Wildlife Board and NBWL in-principle approvals.",
+      "kpclProposals": [
+        {
+          "proposalNo": "WL/KA/Approach/519370/2025",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Diversion of 0.0809 ha of forest land in Sy No.11 of Hosangadi Village, Kundapura Taluk, Udupi District Kudremukha Wildlife Division, Karkala proposed for land sliding area for providing wall protection work in favour of the Executive Engineer (Civil), Varahi Hydroelectric Project, Karnataka Power Corporation Limited (KPCL), Hosangadi, Kundapura Taluk, Udupi District.",
+          "submitted": "22/01/2025",
+          "officialStatus": "Pending at Proponent",
+          "area": "0.0809"
+        },
+        {
+          "proposalNo": "FP/KA/NonConEnergy/569321/2026",
+          "gate": "FC",
+          "clearanceType": "Form-H (Amendment in approval Granted)",
+          "projectName": "Regularisation proposal of deviations in already approved project- KGWEF -Stage 1 (12.00Ha) in Sy no 146 Doni village and Sy no 43(A) of Kadkol Village",
+          "submitted": "08/05/2026",
+          "officialStatus": "Pending at UA due to EDS by MS after PSC-I",
+          "area": "12"
+        },
+        {
+          "proposalNo": "IA/KA/RIV/447282/2023",
+          "gate": "EC",
+          "clearanceType": "Application for ToR (Category A, B1, and B2 Violation)/EC (Category B2) - Form 1",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "21/10/2023",
+          "officialStatus": "ToR Granted",
+          "area": ""
+        },
+        {
+          "proposalNo": "WL/KA/HYD/507286/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "22/11/2024",
+          "officialStatus": "Pending at Wildlife Warden",
+          "area": "38.984"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/491368/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "06/08/2024",
+          "officialStatus": "Pending for Analysis and Fill Part-3",
+          "area": "38.984"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/489296/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "24/07/2024",
+          "officialStatus": "Pending at Wildlife Warden",
+          "area": "38.984"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/463846/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "26/02/2024",
+          "officialStatus": "EDS Raised",
+          "area": "38.984"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/451402/2023",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Sharavathy Pumped Storage Project (2000 MW)",
+          "submitted": "13/11/2023",
+          "officialStatus": "EDS Raised",
+          "area": "38.984"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/575254/2026",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Varahi Pumped Storage Project",
+          "submitted": "09/04/2026",
+          "officialStatus": "Pending at State",
+          "area": "319.27"
+        },
+        {
+          "proposalNo": "WL/KA/SRY/574306/2026",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Varahi Pumped Storage Project",
+          "submitted": "02/04/2026",
+          "officialStatus": "Proposal Withdrawn By Chief Wildlife Warden",
+          "area": "319.27"
+        },
+        {
+          "proposalNo": "WL/KA/HYD/492126/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Varahi Pumped Storage Project",
+          "submitted": "10/08/2024",
+          "officialStatus": "Pending at Proponent",
+          "area": "377.11"
+        },
+        {
+          "proposalNo": "WL/KA/SRY/458075/2024",
+          "gate": "WL",
+          "clearanceType": "Part-I & Part-II (Seeking recommendation of Standing Committee of NBWL/ SBWL)",
+          "projectName": "Varahi Pumped Storage Project",
+          "submitted": "27/01/2024",
+          "officialStatus": "Pending at Proponent",
+          "area": "377.11"
+        }
+      ],
       "provenance": "REAL",
       "sources": [
         "https://parivesh.nic.in/  (Track Your Proposal export)",

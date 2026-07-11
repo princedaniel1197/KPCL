@@ -77,6 +77,39 @@ export default function Clearances({ searchParams }: { searchParams: SearchParam
                 <span className="font-semibold text-ink">Litigation:</span> {r.litigation}
               </p>
             )}
+
+            {r.kpclProposals && r.kpclProposals.length > 1 && (
+              <div className="mt-4">
+                <div className="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-muted mb-1.5">
+                  All KPCL Parivesh proposals · {r.kpclProposals.length} real, live status
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="ledger min-w-[640px]">
+                    <thead>
+                      <tr>
+                        <th className="w-12">Gate</th><th>Proposal No</th><th>Project</th><th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {r.kpclProposals.map((p) => (
+                        <tr key={p.proposalNo}>
+                          <td>
+                            <Chip tone={p.gate === "EC" ? "success" : p.gate === "FC" ? "danger" : "info"}>{p.gate}</Chip>
+                          </td>
+                          <td className="tnum whitespace-nowrap text-[0.75rem]">{p.proposalNo}</td>
+                          <td className="text-[0.78rem]">{p.projectName}</td>
+                          <td className="text-muted text-[0.75rem]">{p.officialStatus}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[0.66rem] text-faint mt-1">
+                  Live Parivesh status for every KPCL clearance — Sharavathi PSP (EC ToR-granted + 5 wildlife
+                  proposals pending) and Varahi PSP (KPCL&apos;s second pumped-storage project).
+                </p>
+              </div>
+            )}
             <p className="text-[0.68rem] text-faint mt-2">
               Real public record — this is the actual Sharavathi PSP, its NBWL approval granted while
               Forest Clearance was rejected and the project put on hold. The synthetic portfolio below
