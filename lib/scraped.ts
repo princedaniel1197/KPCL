@@ -45,8 +45,22 @@ export interface CagRecord {
   sourceUrl?: string;
 }
 
+export interface CaseRecord {
+  label: string;
+  forum: string;
+  court?: string;
+  year: number | null;
+  date: string;
+  docId: string | null;
+  url: string | null;
+  parties: string;
+  kpclRole: string;
+  note?: string;
+  source: string;
+}
+
 export const scrapedClearances = env<ClearanceRecord>(clearancesJson);
-export const scrapedCases = env(casesJson);
+export const scrapedCases = env<CaseRecord>(casesJson);
 export const scrapedCag = env<CagRecord>(cagJson);
 export const scrapedReservoirs = env(reservoirsJson);
 

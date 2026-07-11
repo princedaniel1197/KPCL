@@ -10,6 +10,7 @@ import { AS_OF, legalMatters } from "@/lib/data";
 import { hearingClock } from "@/lib/engines/legal";
 import { firmRoster, ledgerOrder, openMatters, scopeQs, upcomingHearings, urgentHearingCount } from "@/lib/views/legal";
 import { dateFmt, inrCr, num } from "@/lib/format";
+import { RealLitigation } from "@/components/legal/RealLitigation";
 
 const LEDGER_ROWS_SHOWN = 80;
 const CR = 1e7;
@@ -40,6 +41,8 @@ export default function MattersPage({ searchParams }: { searchParams: SearchPara
         <KpiTile label="Hearings ≤14 days" value={num(urgentHearingCount())} tone="warning" sub="listed within a fortnight" />
         <KpiTile label="Fees paid" value={inrCr(fees * LAKH)} tone="info" sub="cumulative counsel & firm fees" />
       </div>
+
+      <RealLitigation />
 
       <SectionHead
         title="Matters ledger"

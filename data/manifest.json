@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T07:49:31Z",
+  "generatedAt": "2026-07-11T12:27:38Z",
   "sources": [
     {
       "feed": "clearances",
@@ -15,7 +15,7 @@
       "note": "REAL Sharavathi PSP clearance timeline compiled from public reporting (NBWL approved, Forest Clearance rejected, on hold, HC PIL). Refresh live stage status from Parivesh locally.",
       "count": 1,
       "calibration": false,
-      "fetched_at": "2026-07-11T07:48:42Z"
+      "fetched_at": "2026-07-11T12:26:11Z"
     },
     {
       "feed": "cases",
@@ -26,12 +26,12 @@
       ],
       "provenance": "REAL",
       "status": "LIVE",
-      "source_url": "https://karnatakajudiciary.kar.nic.in",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "REAL Sharavathi PSP PIL (Karnataka HC, notices issued) compiled from public reporting. Refresh authoritative order history via eCourts locally.",
-      "count": 1,
+      "source_url": "https://indiankanoon.org/search/",
+      "robots": "DISALLOWED",
+      "note": "Indian Kanoon: 40 reported KPCL matters across 7 queries + 1 curated (Sharavathi PIL). Real parties/forums/dates.",
+      "count": 41,
       "calibration": false,
-      "fetched_at": "2026-07-11T07:49:03Z"
+      "fetched_at": "2026-07-11T12:27:14Z"
     },
     {
       "feed": "tenders",
@@ -82,7 +82,7 @@
       "note": "CEA design norms + KERC O&M escalation. Notified baseline; refresh from the CEA/KERC PDFs when pinned. Reconciles engine ↔ generator thresholds.",
       "count": 2,
       "calibration": true,
-      "fetched_at": "2026-07-11T07:49:25Z"
+      "fetched_at": "2026-07-11T12:27:36Z"
     },
     {
       "feed": "cag",
@@ -98,7 +98,7 @@
       "note": "Live-fetched CAG PDF (28k chars); 3 findings verified present in the document.",
       "count": 3,
       "calibration": false,
-      "fetched_at": "2026-07-11T07:49:27Z"
+      "fetched_at": "2026-07-11T12:27:38Z"
     },
     {
       "feed": "kerc",
@@ -130,7 +130,7 @@
       "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",
       "count": 1,
       "calibration": true,
-      "fetched_at": "2026-07-11T07:49:29Z"
+      "fetched_at": "2026-07-11T12:27:38Z"
     },
     {
       "feed": "freight",
@@ -146,7 +146,7 @@
       "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",
       "count": 3,
       "calibration": true,
-      "fetched_at": "2026-07-11T07:49:30Z"
+      "fetched_at": "2026-07-11T12:27:38Z"
     },
     {
       "feed": "reservoirs",
@@ -162,7 +162,7 @@
       "note": "REAL Linganamakki + Supa reservoir levels from public dam-level reporting. Refresh from CWC / Karnataka dam-level source when reachable.",
       "count": 2,
       "calibration": false,
-      "fetched_at": "2026-07-11T07:49:30Z"
+      "fetched_at": "2026-07-11T12:27:38Z"
     },
     {
       "feed": "uttam",

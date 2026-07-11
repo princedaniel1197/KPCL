@@ -54,20 +54,23 @@ class Http:
         retry=retry_if_exception_type((requests.ConnectionError, requests.Timeout)),
         reraise=True,
     )
-    def _live_get(self, url: str) -> requests.Response:
+    def _live_get(self, url: str, ua: str | None = None) -> requests.Response:
         from urllib.parse import urlparse
 
         _polite_delay(urlparse(url).netloc)
-        resp = self.session.get(url, timeout=self.timeout)
+        # Per-request UA override for sources whose WAF soft-blocks the bot UA on
+        # pages their robots.txt explicitly permits (e.g. Indian Kanoon /search/).
+        headers = {"User-Agent": ua} if ua else None
+        resp = self.session.get(url, timeout=self.timeout, headers=headers)
         resp.raise_for_status()
         return resp
 
-    def get_text(self, url: str) -> str:
+    def get_text(self, url: str, *, ua: str | None = None) -> str:
         """Fetch a page as text, using (and populating) the on-disk cache."""
         cp = _cache_path(url, "text")
         if self.use_cache and cp.exists():
             return cp.read_text(encoding="utf-8", errors="replace")
-        resp = self._live_get(url)
+        resp = self._live_get(url, ua=ua)
         text = resp.text
         cp.write_text(text, encoding="utf-8", errors="replace")
         return text
