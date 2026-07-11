@@ -15,6 +15,7 @@ import { contractorName, crToInr, scopeQs, scopedProjects } from "@/lib/views/pr
 import { dateFmt, inrCr, num } from "@/lib/format";
 import { hasReal, scrapedClearances } from "@/lib/scraped";
 import { ProvenanceChip } from "@/components/ui/ProvenanceChip";
+import { RealEcCompliance } from "@/components/projects/RealEcCompliance";
 
 const gateTone = (s: string) =>
   s === "CLEARED" ? "success" : s === "BLOCKED" || s === "ON_HOLD" ? "danger" : "warning";
@@ -128,6 +129,8 @@ export default function Clearances({ searchParams }: { searchParams: SearchParam
             </p>
           </section>
         ))}
+
+      <RealEcCompliance />
 
       {gated.length === 0 && (
         <p className="text-muted text-sm">No project with statutory gates in this plant scope.</p>

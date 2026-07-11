@@ -2,7 +2,7 @@
   "feed": "kerc",
   "provenance": "REAL",
   "source_url": "https://kerc.karnataka.gov.in (tariff orders)",
-  "fetched_at": "2026-07-11T18:28:13Z",
+  "fetched_at": "2026-07-11T18:39:05Z",
   "status": "LIVE",
   "robots": "allowed",
   "note": "KERC tariff orders OCR-parsed: BTPS Unit-3 (700 MW): RoE 15.5%, GSHR 2166.7 kCal/kWh.",

@@ -1,0 +1,45 @@
+{
+  "feed": "kpcl_env",
+  "provenance": "REAL",
+  "source_url": "https://kpcl.karnataka.gov.in/136/environment/en",
+  "fetched_at": "2026-07-11T18:38:40Z",
+  "status": "LIVE",
+  "robots": "allowed",
+  "note": "KPCL Environment page: 4 EC documents (2 compliance reports). Real KPCL-published EC compliance disclosures.",
+  "records": [
+    {
+      "title": "Half Yearly Status Report regarding Environmental Clearance of YCCPP",
+      "url": "https://kpcl.karnataka.gov.in/uploads/media_to_upload1782883127.pdf",
+      "docType": "HALF_YEARLY_COMPLIANCE",
+      "project": "YCCPP (Yelahanka CCPP)",
+      "source": "KPCL Environment page",
+      "provenance": "REAL",
+      "period": "OCTOBER 2025 TO MARCH -2026"
+    },
+    {
+      "title": "Environmental Clearance of Baranj I - IV,Manoradeep and Kiloni Coal Blocks",
+      "url": "https://kpcl.karnataka.gov.in/storage/pdf-files/BaranjEC_11thSeptember2023.pdf",
+      "docType": "EC_GRANT",
+      "project": "Baranj/Manoradeep/Kiloni coal blocks",
+      "source": "KPCL Environment page",
+      "provenance": "REAL"
+    },
+    {
+      "title": "Six Monthly Enviromental Compliance report of Baranj Open Cast Mining Project",
+      "url": "https://kpcl.karnataka.gov.in/uploads/media_to_upload1782904177.pdf",
+      "docType": "SIX_MONTHLY_COMPLIANCE",
+      "project": "Baranj/Manoradeep/Kiloni coal blocks",
+      "source": "KPCL Environment page",
+      "provenance": "REAL",
+      "period": null
+    },
+    {
+      "title": "Granted Environmental Clearance (EC) for the Baranj Opencast Mining Project",
+      "url": "https://kpcl.karnataka.gov.in/uploads/media_to_upload1772690438.pdf",
+      "docType": "EC_GRANT",
+      "project": "Baranj/Manoradeep/Kiloni coal blocks",
+      "source": "KPCL Environment page",
+      "provenance": "REAL"
+    }
+  ]
+}

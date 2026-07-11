@@ -13,6 +13,7 @@ import ceaDgrJson from "@/data/scraped/cea_dgr.json";
 import ceaCoalJson from "@/data/scraped/cea_coal.json";
 import kercChargesJson from "@/data/scraped/kerc_charges.json";
 import bidassistJson from "@/data/scraped/bidassist.json";
+import kpclEnvJson from "@/data/scraped/kpcl_env.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -144,6 +145,16 @@ export interface TenderRecord {
   source: string;
 }
 export const scrapedTenders = env<TenderRecord>(bidassistJson);
+
+export interface EcDocRecord {
+  title: string;
+  url: string;
+  docType: string; // HALF_YEARLY_COMPLIANCE | SIX_MONTHLY_COMPLIANCE | COMPLIANCE | EC_GRANT | EC_DOC
+  project: string | null;
+  period?: string | null;
+  source: string;
+}
+export const scrapedKpclEnv = env<EcDocRecord>(kpclEnvJson);
 export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
 
 export interface CeaCoalStation {

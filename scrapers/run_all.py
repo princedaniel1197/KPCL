@@ -41,6 +41,7 @@ SCRAPERS = [
     ("ecourts", "REAL case status", ["/legal", "/data"]),
     ("eproc", "REAL KPCL tenders", ["/contracts/spend", "/projects/retenders", "/data"]),
     ("bidassist", "REAL active KPCL tenders (via BidAssist aggregator)", ["/contracts", "/data"]),
+    ("kpcl_env", "REAL KPCL EC compliance disclosures (KPCL official site)", ["/projects/clearances", "/data"]),
     ("cea", "REAL project status + CALIBRATED norms", ["/projects", "/plants/hydro", "/data"]),
     ("cea_dgr", "REAL daily generation + coal stock + unit outages (CEA via NPP)", ["/plants", "/data"]),
     ("cea_coal", "REAL daily coal stock vs normative (CEA via NPP)", ["/coal", "/data"]),
