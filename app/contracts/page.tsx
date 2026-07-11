@@ -11,6 +11,7 @@ import { milestoneFlags, ldClause, repoAggregates, scopeQs, scopedContracts } fr
 import { vendorById } from "@/lib/data";
 import { dateFmt, inrCr, num } from "@/lib/format";
 import { RealTenders } from "@/components/contracts/RealTenders";
+import { RealAwards } from "@/components/contracts/RealAwards";
 
 const MODES = ["all", "OPEN", "LIMITED", "SINGLE"] as const;
 
@@ -57,6 +58,8 @@ export default function ContractsRepo({ searchParams }: { searchParams: SearchPa
       </div>
 
       <RealTenders />
+
+      <RealAwards />
 
       <div className="flex flex-wrap gap-2 mt-6 mb-3 no-print">
         <Link href={mkQs({ cat: "all" })} className={chipCls(cat === "all")}>All categories</Link>

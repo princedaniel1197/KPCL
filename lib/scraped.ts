@@ -14,6 +14,7 @@ import ceaCoalJson from "@/data/scraped/cea_coal.json";
 import kercChargesJson from "@/data/scraped/kerc_charges.json";
 import bidassistJson from "@/data/scraped/bidassist.json";
 import kpclEnvJson from "@/data/scraped/kpcl_env.json";
+import bidawardJson from "@/data/scraped/bidaward.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -155,6 +156,21 @@ export interface EcDocRecord {
   source: string;
 }
 export const scrapedKpclEnv = env<EcDocRecord>(kpclEnvJson);
+
+export interface AwardRecord {
+  awardRef: string;
+  title: string;
+  awardedValueRs: number | null;
+  contractDate: string | null;
+  contractPeriod: string | null;
+  location: string | null;
+  category: string | null;
+  contractType: string | null;
+  stage: string | null;
+  aocDocAvailable: boolean;
+  source: string;
+}
+export const scrapedAwards = env<AwardRecord>(bidawardJson);
 export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
 
 export interface CeaCoalStation {

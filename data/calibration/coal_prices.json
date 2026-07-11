@@ -2,7 +2,7 @@
   "feed": "coal_prices",
   "provenance": "CALIBRATED",
   "source_url": "https://coal.gov.in/en/major-statistics/coal-grade",
-  "fetched_at": "2026-07-11T18:39:05Z",
+  "fetched_at": "2026-07-11T18:47:06Z",
   "status": "LIVE",
   "robots": "allowed",
   "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",

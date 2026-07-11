@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T18:39:19Z",
+  "generatedAt": "2026-07-11T18:47:17Z",
   "sources": [
     {
       "feed": "clearances",
@@ -15,7 +15,7 @@
       "note": "Parivesh exports parsed: 12 real KPCL proposals (1 EC, 1 FC, 10 WL); flagship IA/KA/RIV/447282/2023 (ToR Granted).",
       "count": 1,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:38:14Z"
+      "fetched_at": "2026-07-11T18:46:03Z"
     },
     {
       "feed": "cases",
@@ -31,7 +31,7 @@
       "note": "Indian Kanoon: 105 reported KPCL matters across 13 queries + 1 curated (Sharavathi PIL). Real parties/forums/dates.",
       "count": 106,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:38:15Z"
+      "fetched_at": "2026-07-11T18:46:04Z"
     },
     {
       "feed": "tenders",
@@ -64,7 +64,23 @@
       "note": "BidAssist: 185 active KPCL tenders, ₹957.14 cr total value. Real published tender ids/values/deadlines from the KPCL eProcurement portal.",
       "count": 185,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:38:40Z"
+      "fetched_at": "2026-07-11T18:46:29Z"
+    },
+    {
+      "feed": "bidaward",
+      "label": "REAL recent KPCL contract awards (via BidAssist aggregator)",
+      "powers": [
+        "/contracts",
+        "/data"
+      ],
+      "provenance": "REAL",
+      "status": "LIVE",
+      "source_url": "https://bidassist.com/tender-results/karnataka-power-corporation-limited/active",
+      "robots": "DISALLOWED",
+      "note": "BidAssist: 150 most-recent KPCL contract awards (of 7035 total), ₹18325.57 cr awarded value. Real published AOC refs/values/contract dates.",
+      "count": 150,
+      "calibration": false,
+      "fetched_at": "2026-07-11T18:46:38Z"
     },
     {
       "feed": "kpcl_env",
@@ -80,7 +96,7 @@
       "note": "KPCL Environment page: 4 EC documents (2 compliance reports). Real KPCL-published EC compliance disclosures.",
       "count": 4,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:38:40Z"
+      "fetched_at": "2026-07-11T18:46:38Z"
     },
     {
       "feed": "cea",
@@ -114,7 +130,7 @@
       "note": "CEA design norms + KERC O&M escalation. Notified baseline; refresh from the CEA/KERC PDFs when pinned. Reconciles engine ↔ generator thresholds.",
       "count": 2,
       "calibration": true,
-      "fetched_at": "2026-07-11T18:39:01Z"
+      "fetched_at": "2026-07-11T18:47:02Z"
     },
     {
       "feed": "cea_dgr",
@@ -130,7 +146,7 @@
       "note": "CEA DGR 09.07.2026 via NPP: 3 KPCL thermal stations, 4 units under outage. Real gen/coal-stock/outage figures.",
       "count": 3,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:01Z"
+      "fetched_at": "2026-07-11T18:47:02Z"
     },
     {
       "feed": "cea_coal",
@@ -146,7 +162,7 @@
       "note": "CEA daily coal stock 10.07.2026 via NPP: 3 KPCL stations, 3 below normative stock, 0 critical.",
       "count": 3,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:01Z"
+      "fetched_at": "2026-07-11T18:47:03Z"
     },
     {
       "feed": "cag",
@@ -162,7 +178,7 @@
       "note": "Live-fetched CAG PDF (28k chars); 3 findings verified present in the document.",
       "count": 3,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:03Z"
+      "fetched_at": "2026-07-11T18:47:05Z"
     },
     {
       "feed": "kerc",
@@ -178,7 +194,7 @@
       "note": "KERC tariff orders OCR-parsed: BTPS Unit-3 (700 MW): RoE 15.5%, GSHR 2166.7 kCal/kWh.",
       "count": 1,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:05Z"
+      "fetched_at": "2026-07-11T18:47:05Z"
     },
     {
       "feed": "kerc_charges",
@@ -193,7 +209,7 @@
       "note": "KERC-approved per-station charges (FY24) for 5 KPCL thermal stations: variable ₹4.07–4.84/unit. Real approved rates.",
       "count": 5,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:05Z"
+      "fetched_at": "2026-07-11T18:47:05Z"
     },
     {
       "feed": "coal_prices",
@@ -209,7 +225,7 @@
       "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",
       "count": 1,
       "calibration": true,
-      "fetched_at": "2026-07-11T18:39:05Z"
+      "fetched_at": "2026-07-11T18:47:06Z"
     },
     {
       "feed": "freight",
@@ -225,7 +241,7 @@
       "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",
       "count": 3,
       "calibration": true,
-      "fetched_at": "2026-07-11T18:39:05Z"
+      "fetched_at": "2026-07-11T18:47:06Z"
     },
     {
       "feed": "reservoirs",
@@ -241,7 +257,7 @@
       "note": "REAL Linganamakki + Supa reservoir levels from public dam-level reporting. Refresh from CWC / Karnataka dam-level source when reachable.",
       "count": 2,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:06Z"
+      "fetched_at": "2026-07-11T18:47:06Z"
     },
     {
       "feed": "annual_report",
@@ -258,7 +274,7 @@
       "note": "KPCL Annual Report 2024-25: 15 stations (real generation), 5 thermal-unit reliability rows, 3 reservoirs.",
       "count": 6,
       "calibration": false,
-      "fetched_at": "2026-07-11T18:39:18Z"
+      "fetched_at": "2026-07-11T18:47:17Z"
     },
     {
       "feed": "uttam",
@@ -278,7 +294,7 @@
     }
   ],
   "summary": {
-    "live": 14,
+    "live": 15,
     "pending": 1,
     "skipped": 2,
     "stale": 0,
