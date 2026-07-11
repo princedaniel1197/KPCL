@@ -80,9 +80,18 @@ export interface StationGen {
   genMU: number;
   genPrevMU: number | null;
 }
+export interface ThermalUnitReal {
+  plant: string; // RTPS | BTPS
+  unit: string; // U1-7 | U8 | U1 | U2 | U3
+  plfPct?: number;
+  auxPct?: number;
+  specificCoal?: number;
+  pafPct?: number;
+}
 export interface AnnualReport {
   fy: string | null;
   stations: StationGen[];
+  thermal: ThermalUnitReal[];
   reservoirs: { name: string; fullLevel: string; highestLevel: string; pctCapacity: number | null }[];
 }
 

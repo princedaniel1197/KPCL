@@ -2,10 +2,10 @@
   "feed": "annual_report",
   "provenance": "REAL",
   "source_url": "https://kpcl.karnataka.gov.in (Annual Report PDF)",
-  "fetched_at": "2026-07-11T13:42:33Z",
+  "fetched_at": "2026-07-11T13:58:03Z",
   "status": "LIVE",
   "robots": "",
-  "note": "KPCL Annual Report 2024-25: 15 stations (real generation), 3 reservoirs.",
+  "note": "KPCL Annual Report 2024-25: 15 stations (real generation), 5 thermal-unit reliability rows, 3 reservoirs.",
   "records": {
     "fy": "2024-25",
     "stations": [
@@ -98,6 +98,48 @@
         "plant": "HYDRO",
         "genMU": 116.44,
         "genPrevMU": 156.48
+      }
+    ],
+    "thermal": [
+      {
+        "plant": "RTPS",
+        "unit": "U1-7",
+        "plfPct": 54.77,
+        "auxPct": 10.65,
+        "specificCoal": 0.78,
+        "pafPct": 65.84
+      },
+      {
+        "plant": "RTPS",
+        "unit": "U8",
+        "plfPct": 57.44,
+        "auxPct": 10.65,
+        "specificCoal": 0.82,
+        "pafPct": 72.99
+      },
+      {
+        "plant": "BTPS",
+        "unit": "U1",
+        "plfPct": 54.16,
+        "auxPct": 7.22,
+        "specificCoal": 0.82,
+        "pafPct": 61.38
+      },
+      {
+        "plant": "BTPS",
+        "unit": "U2",
+        "plfPct": 58.39,
+        "auxPct": 6.93,
+        "specificCoal": 0.84,
+        "pafPct": 70.61
+      },
+      {
+        "plant": "BTPS",
+        "unit": "U3",
+        "plfPct": 53.04,
+        "auxPct": 6.93,
+        "specificCoal": 0.77,
+        "pafPct": 65.14
       }
     ],
     "reservoirs": [

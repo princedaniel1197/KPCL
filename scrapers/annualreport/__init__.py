@@ -35,6 +35,50 @@ def _last_num(s: str) -> float | None:
     return float(nums[-1].replace(",", "")) if nums else None
 
 
+def _parse_thermal(page) -> list[dict]:
+    """Parse a RTPS/BTPS per-unit 'Particulars' table into unit reliability rows
+    (PLF, aux %, specific coal, PAF) for the latest FY. Header cells are messy, so
+    units are labelled by position from the known station layout."""
+    out: list[dict] = []
+    for tbl in page.extract_tables() or []:
+        rows = [[(" ".join(str(c).split()) if c else "") for c in r] for r in tbl]
+        flat = " ".join(" ".join(r) for r in rows[:4])
+        if "Plant load fact" not in " ".join(r[0] for r in rows if r):
+            continue
+        is_rtps = "1 to 7" in flat or "U 8" in flat
+        labels = ["U1-7", "U8"] if is_rtps else ["U1", "U2", "U3"]
+        plant = "RTPS" if is_rtps else "BTPS"
+
+        def matching_rows(key):
+            return [[_num(c) for c in r[1:] if _num(c) is not None]
+                    for r in rows if re.search(key, r[0], re.I)]
+
+        def first_row(key):
+            m = matching_rows(key)
+            return m[0] if m else []
+
+        def aux_pct_row():
+            # two 'Aux' rows exist (MU then %); the % row's values are all < 30.
+            for vals in matching_rows(r"^Aux"):
+                if vals and all(v < 30 for v in vals[: len(labels)]):
+                    return vals
+            return []
+
+        plf = first_row(r"Plant load fact")
+        scoal = first_row(r"Specific coal")
+        paf = first_row(r"Plant availabil")
+        aux = aux_pct_row()
+        for i, label in enumerate(labels):
+            rec: dict = {"plant": plant, "unit": label}
+            if i < len(plf): rec["plfPct"] = plf[i]
+            if i < len(aux): rec["auxPct"] = aux[i]
+            if i < len(scoal): rec["specificCoal"] = scoal[i]
+            if i < len(paf): rec["pafPct"] = paf[i]
+            if "plfPct" in rec:
+                out.append(rec)
+    return out
+
+
 def run(http: Http) -> ScrapeResult:
     pdf_path = _find_pdf()
     res = ScrapeResult(feed=FEED, provenance=Provenance.REAL,
@@ -50,6 +94,7 @@ def run(http: Http) -> ScrapeResult:
 
     stations: list[dict] = []
     reservoirs: list[dict] = []
+    thermal: list[dict] = []
     fy = None
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
@@ -60,6 +105,9 @@ def run(http: Http) -> ScrapeResult:
                     fy = m.group(1)
             has_summary = "A. KPCL" in t and "Generation" in t
             has_reservoir = "Full level" in t and "Capacity" in t
+            has_thermal = "Plant load factor" in t and "Specific coal" in t and re.search(r"U\s?1\b|U\s?8", t)
+            if has_thermal:
+                thermal.extend(_parse_thermal(page))
             if not (has_summary or has_reservoir):
                 continue
             for tbl in page.extract_tables() or []:
@@ -101,6 +149,10 @@ def run(http: Http) -> ScrapeResult:
                             "highestLevel": cells[3] if len(cells) > 3 else "",
                             "pctCapacity": _last_num(" ".join(cells[-2:])),
                         })
+            # The generation/thermal/reservoir tables are clustered together; once
+            # the station summary is parsed, stop (avoids re-reading ~900 more pages).
+            if stations and reservoirs:
+                break
 
     # dedupe by station/name (tables can repeat across the report)
     seen: set[str] = set()
@@ -108,11 +160,15 @@ def run(http: Http) -> ScrapeResult:
     seenr: set[str] = set()
     reservoirs = [r for r in reservoirs if not (r["name"] in seenr or seenr.add(r["name"]))]
 
+    # dedupe thermal by plant+unit
+    seent: set[str] = set()
+    thermal = [x for x in thermal if not (f"{x['plant']}{x['unit']}" in seent or seent.add(f"{x['plant']}{x['unit']}"))]
+
     if stations:
         res.status = FeedStatus.LIVE
-        res.note = (f"KPCL Annual Report {fy}: {len(stations)} stations "
-                    f"(real generation), {len(reservoirs)} reservoirs.")
+        res.note = (f"KPCL Annual Report {fy}: {len(stations)} stations (real generation), "
+                    f"{len(thermal)} thermal-unit reliability rows, {len(reservoirs)} reservoirs.")
     else:
         res.note = "Annual Report found but station table not parsed — layout may differ."
-    res.payload = {"fy": fy, "stations": stations, "reservoirs": reservoirs}
+    res.payload = {"fy": fy, "stations": stations, "thermal": thermal, "reservoirs": reservoirs}
     return res

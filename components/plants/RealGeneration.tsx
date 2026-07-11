@@ -20,6 +20,10 @@ export function RealGeneration({ scope }: { scope: Scope }) {
   const stations = ar.stations.filter((s) => inScope(s, scope)).sort((a, b) => b.genMU - a.genMU);
   if (stations.length === 0) return null;
 
+  const thermal = (ar.thermal ?? []).filter(
+    (u) => scope.plant === "ALL" || u.plant === scope.plant,
+  );
+
   const total = stations.reduce((t, s) => t + s.genMU, 0);
   const prevTotal = stations.reduce((t, s) => t + (s.genPrevMU ?? 0), 0);
   const yoy = prevTotal > 0 ? ((total - prevTotal) / prevTotal) * 100 : 0;
@@ -70,6 +74,35 @@ export function RealGeneration({ scope }: { scope: Scope }) {
           </tbody>
         </table>
       </div>
+
+      {thermal.length > 0 && (
+        <div className="overflow-x-auto mt-4">
+          <table className="ledger min-w-[520px]">
+            <thead>
+              <tr>
+                <th>Thermal unit</th>
+                <th className="num">PLF</th><th className="num">PAF</th>
+                <th className="num">Aux %</th><th className="num">Sp. coal (kg/kWh)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {thermal.map((u) => (
+                <tr key={`${u.plant}-${u.unit}`}>
+                  <td className="font-medium whitespace-nowrap">{u.plant} {u.unit}</td>
+                  <td className="num">{u.plfPct != null ? `${u.plfPct.toFixed(1)}%` : "—"}</td>
+                  <td className="num">{u.pafPct != null ? `${u.pafPct.toFixed(1)}%` : "—"}</td>
+                  <td className="num">{u.auxPct != null ? `${u.auxPct.toFixed(2)}%` : "—"}</td>
+                  <td className="num">{u.specificCoal != null ? u.specificCoal.toFixed(2) : "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="text-[0.68rem] text-faint mt-1">
+            Real audited unit performance ({ar.fy}) from the KPCL Annual Report — the actuals the
+            synthetic per-unit historian below is calibrated against.
+          </p>
+        </div>
+      )}
     </>
   );
 }
