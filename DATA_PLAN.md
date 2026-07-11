@@ -13,6 +13,26 @@ SYNTHETIC (fault-implying, fictional). No auth, no captcha, no paywalled content
 
 ---
 
+## ✅ REAL DATA NOW LIVE (kpcl.vercel.app) — current state
+
+| Module | Real data live | Source |
+|---|---|---|
+| **Plants** | 15 stations real generation (RTPS 8,310 MU, BTPS 8,182 MU, Sharavathy 4,968 MU…) + 5 thermal units PLF/aux/PAF/specific-coal | KPCL Annual Report 2024-25 (PDF → parsed) |
+| **Overview** | Real audited financials: total income ₹14,510 cr, operating profit ₹4,882 cr, PBT ₹928 cr (−38% YoY) | KPCL Annual Report P&L |
+| **Legal** | 105 real reported court cases (SC/HC/district, 1993–2026, judgment links) | Indian Kanoon |
+| **Clearances** | Real Sharavathi proposal `IA/KA/RIV/447282/2023`, ToR Granted, 21/10/2023 + gate timeline | Parivesh export + reporting |
+| **Regulatory** | 3 CAG findings (₹12,916 cr / ₹2,518 cr / ₹1,563 cr) verified in source PDF | cag.gov.in (live fetch) |
+| **Hydro/Coal** | reservoir levels + CIL grades / freight / demurrage / norms | CWC + calibration |
+
+**The pipeline that works best: you drop a PDF/export into `scrapers/.manual/`, I parse it.** Guardrail-safe,
+no portal-scraping fragility. The KPCL Annual Report (one PDF) was the single biggest lever — it took Plants +
+Finance from mostly-synthetic to genuinely real.
+
+**Still highest-value next:** more from the same Annual Report (coal consumption, manpower, per-station ₹/unit);
+KERC tariff norms (needs Tesseract OCR — download Tesseract, then local run); the UTTAM ask to KPCL (coal hero).
+
+---
+
 ## Phase 0 — Foundation ✅ DONE (deployed)
 - Scraper suite (`/scrapers`) + provenance layer + `/data` manifest screen.
 - **CAG** live-scraped from cag.gov.in (YTPS ₹12,915.90 cr, procurement ₹2,517.92 cr, RPCL ₹1,562.76 cr — verified in source PDF).
