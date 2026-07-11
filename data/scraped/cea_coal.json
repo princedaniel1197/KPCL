@@ -1,0 +1,62 @@
+{
+  "feed": "cea_coal",
+  "provenance": "REAL",
+  "source_url": "https://npp.gov.in/publishedReports (CEA Daily Coal Stock Report)",
+  "fetched_at": "2026-07-11T15:21:45Z",
+  "status": "LIVE",
+  "robots": "allowed",
+  "note": "CEA daily coal stock 10.07.2026 via NPP: 3 KPCL stations, 3 below normative stock, 0 critical.",
+  "records": [
+    {
+      "plant": "BTPS",
+      "station": "Bellary Tps",
+      "reportDate": "10.07.2026",
+      "capacityMW": 1700.0,
+      "plfPct": 63.3,
+      "dailyRequirementKT": 25.83,
+      "normativeStockKT": 568.16,
+      "actualStockKT": 331.3,
+      "stockDays": 12.8,
+      "belowNormative": true,
+      "receiptKT": 7.8,
+      "consumptionKT": 9.7,
+      "depleting": true,
+      "critical": false,
+      "provenance": "REAL"
+    },
+    {
+      "plant": "RTPS",
+      "station": "Raichur Tps",
+      "reportDate": "10.07.2026",
+      "capacityMW": 1720.0,
+      "plfPct": 48.8,
+      "dailyRequirementKT": 27.51,
+      "normativeStockKT": 605.22,
+      "actualStockKT": 303.1,
+      "stockDays": 11.0,
+      "belowNormative": true,
+      "receiptKT": 10.9,
+      "consumptionKT": 15.4,
+      "depleting": true,
+      "critical": false,
+      "provenance": "REAL"
+    },
+    {
+      "plant": "YTPS",
+      "station": "Yermarus Tpp",
+      "reportDate": "10.07.2026",
+      "capacityMW": 1600.0,
+      "plfPct": 67.5,
+      "dailyRequirementKT": 22.35,
+      "normativeStockKT": 491.65,
+      "actualStockKT": 244.2,
+      "stockDays": 10.9,
+      "belowNormative": true,
+      "receiptKT": 16.0,
+      "consumptionKT": 18.6,
+      "depleting": true,
+      "critical": false,
+      "provenance": "REAL"
+    }
+  ]
+}

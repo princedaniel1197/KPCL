@@ -11,6 +11,7 @@ import { subtitle } from "@/lib/subtitle";
 import { coalAggregates, isThermalScope, scopedLeague } from "@/lib/views/coal";
 import { collieryById } from "@/lib/data";
 import { inrCr, monthFmt, num, pct } from "@/lib/format";
+import { RealCoalStock } from "@/components/coal/RealCoalStock";
 
 export default function CoalDashboard({ searchParams }: { searchParams: SearchParams }) {
   const lang = getLang();
@@ -43,6 +44,8 @@ export default function CoalDashboard({ searchParams }: { searchParams: SearchPa
         <KpiTile label="Demurrage + idle freight" value={inrCr(agg.leakage.demurrage + agg.leakage.idleFreight)} tone="warning" href="/coal/demurrage" />
         <KpiTile label="Claims pipeline" value={inrCr(claimTotal)} tone="info" href="/coal/claims" sub={`${inrCr(recovered?.amount ?? 0)} recovered`} />
       </div>
+
+      <RealCoalStock scope={scope} />
 
       <SectionHead title="Leakage by month" right="₹ cr, by reconciliation leg" />
       <div className="panel p-4">

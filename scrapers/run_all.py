@@ -42,6 +42,7 @@ SCRAPERS = [
     ("eproc", "REAL KPCL tenders", ["/contracts/spend", "/projects/retenders", "/data"]),
     ("cea", "REAL project status + CALIBRATED norms", ["/projects", "/plants/hydro", "/data"]),
     ("cea_dgr", "REAL daily generation + coal stock + unit outages (CEA via NPP)", ["/plants", "/data"]),
+    ("cea_coal", "REAL daily coal stock vs normative (CEA via NPP)", ["/coal", "/data"]),
     ("cag", "REAL published audit findings", ["/regulatory/audit-paras", "/data"]),
     ("kerc", "REAL approved charges + CALIBRATED norm rates", ["/regulatory", "/regulatory/costing"]),
     ("coalprices", "CALIBRATED CIL grade bands + prices", ["/coal", "/data"]),

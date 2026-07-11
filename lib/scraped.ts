@@ -10,6 +10,7 @@ import cagJson from "@/data/scraped/cag.json";
 import reservoirsJson from "@/data/scraped/reservoirs.json";
 import kercJson from "@/data/scraped/kerc.json";
 import ceaDgrJson from "@/data/scraped/cea_dgr.json";
+import ceaCoalJson from "@/data/scraped/cea_coal.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -113,6 +114,24 @@ export const scrapedCag = env<CagRecord>(cagJson);
 export const scrapedReservoirs = env(reservoirsJson);
 export const scrapedKerc = env<KercNorm>(kercJson);
 export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
+
+export interface CeaCoalStation {
+  plant: string; // BTPS | RTPS | YTPS
+  station: string;
+  reportDate?: string;
+  capacityMW: number | null;
+  plfPct: number | null;
+  dailyRequirementKT: number | null;
+  normativeStockKT: number | null;
+  actualStockKT: number | null;
+  stockDays: number | null;
+  belowNormative: boolean;
+  receiptKT: number | null;
+  consumptionKT: number | null;
+  depleting: boolean;
+  critical: boolean;
+}
+export const scrapedCeaCoal = env<CeaCoalStation>(ceaCoalJson);
 
 export function hasReal<T>(e: ScrapedEnvelope<T>): boolean {
   return e.status === "LIVE" && e.records.length > 0;
