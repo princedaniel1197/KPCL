@@ -13,18 +13,31 @@ and push; Vercel redeploys automatically.
 
 ## 1. One-time setup (~10 min)
 
-```bash
+### Windows PowerShell (your setup)
+```powershell
 git clone https://github.com/princedaniel1197/KPCL.git
-cd KPCL/scrapers
+cd KPCL\scrapers
 
 python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
+# if activation is blocked ("running scripts is disabled"), run this once:
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
 
 pip install -r requirements.txt
 python -m playwright install chromium          # headless browser for JS portals
+```
+> **PowerShell 5.1 note:** it does NOT support `&&` chaining — run each command on
+> its own line (this whole runbook is written that way). `python scrapers\run_all.py`
+> works with either slash direction.
+
+### macOS / Linux
+```bash
+git clone https://github.com/princedaniel1197/KPCL.git
+cd KPCL/scrapers
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m playwright install chromium
 ```
 
 **Tesseract OCR binary** (needed only for the scanned KERC/CAG PDFs):
@@ -80,9 +93,10 @@ Already LIVE from anywhere (no action): **CAG**, **coal prices**, **freight**, *
 
 ## 4. Commit & deploy (the whole point)
 
-```bash
-git add data/ scrapers/
-git commit -m "data: refresh public snapshots (<date>)"
+PowerShell — one command per line (no `&&`):
+```powershell
+git add data\ scrapers\
+git commit -m "data: refresh public snapshots"
 git push origin main          # Vercel auto-deploys in ~1 min
 ```
 
