@@ -15,6 +15,7 @@ import {
 } from "@/lib/views/regulatory";
 import { inrCr, num, pct } from "@/lib/format";
 import type { TariffYear } from "@/lib/types";
+import { RealKercNorms } from "@/components/regulatory/RealKercNorms";
 
 function statusChip(status: TariffYear["status"]) {
   if (status === "TRUED_UP") return <Chip tone="success">TRUED_UP</Chip>;
@@ -70,6 +71,8 @@ export default function Page({ searchParams }: { searchParams: SearchParams }) {
           </Link>
         ))}
       </div>
+
+      <RealKercNorms plant={scope.plant} />
 
       {/* ── Cycle list ── */}
       <SectionHead title={`Tariff cycles — ${station}`} right="three-year window: trued-up · filed · draft" />

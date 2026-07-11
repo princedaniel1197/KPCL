@@ -8,6 +8,7 @@ import clearancesJson from "@/data/scraped/clearances.json";
 import casesJson from "@/data/scraped/cases.json";
 import cagJson from "@/data/scraped/cag.json";
 import reservoirsJson from "@/data/scraped/reservoirs.json";
+import kercJson from "@/data/scraped/kerc.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -72,10 +73,21 @@ export interface CaseRecord {
   source: string;
 }
 
+export interface KercNorm {
+  station: string;
+  plant: string;
+  orderDate?: string;
+  kercRef?: string;
+  roePct?: number;
+  grossStationHeatRate?: number;
+  source: string;
+}
+
 export const scrapedClearances = env<ClearanceRecord>(clearancesJson);
 export const scrapedCases = env<CaseRecord>(casesJson);
 export const scrapedCag = env<CagRecord>(cagJson);
 export const scrapedReservoirs = env(reservoirsJson);
+export const scrapedKerc = env<KercNorm>(kercJson);
 
 export function hasReal<T>(e: ScrapedEnvelope<T>): boolean {
   return e.status === "LIVE" && e.records.length > 0;
