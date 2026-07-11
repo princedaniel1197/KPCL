@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env
+.env*.local
+out/
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.DS_Store
+
+# Generated deterministically by `npm run generate-data`
+# (also auto-run by predev / prebuild) — kept out of version control.
+/data/
+/public/search-index.json
