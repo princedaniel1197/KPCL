@@ -1,0 +1,21 @@
+{
+  "feed": "norms",
+  "provenance": "CALIBRATED",
+  "source_url": "https://cea.nic.in/broad-status-report/?lang=en + KERC tariff norms",
+  "fetched_at": "2026-07-11T06:56:31Z",
+  "status": "LIVE",
+  "robots": "robots.txt unreachable (treated as allow for public GET)",
+  "note": "CEA design norms + KERC O&M escalation. Notified baseline; refresh from the CEA/KERC PDFs when pinned. Reconciles engine ↔ generator thresholds.",
+  "params": {
+    "coalNorms": {
+      "transitQuantityLossPct": 1.5,
+      "transitCvLossKcal": 120,
+      "storageLossPctPer10Days": 0.08,
+      "storageCvToleranceKcal": 85,
+      "extraCoalPctPer100Kcal": 3
+    },
+    "plantNorms": {
+      "omEscalationPct": 5.72
+    }
+  }
+}

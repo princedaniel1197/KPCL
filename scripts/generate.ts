@@ -6,6 +6,7 @@ import * as path from "node:path";
 import { WORLD_SEED } from "@/lib/rng";
 import type { CoalClaim, SearchEntity } from "@/lib/types";
 import { analyzeFsa, analyzeRake } from "@/lib/engines/coal";
+import { COAL_NORMS, GRADE_BANDS, PLANT_NORMS } from "@/lib/engines/norms";
 import { AS_OF, COLLIERIES, MONTHS } from "./gen/context";
 import { genFsas, genRakes, genStockpiles } from "./gen/coal";
 import { genProjects } from "./gen/projects";
@@ -170,6 +171,75 @@ fs.writeFileSync(
   "utf8",
 );
 console.log(`  public/search-index.json  (${entities.length} entities)`);
+
+/* ── Calibration safety net ──────────────────────────────────────
+   The scraper suite (scrapers/run_all.py) writes data/calibration/*.json and
+   data/manifest.json. Those are committed. But so that a clean rebuild after
+   `rm -rf data` never breaks the app's static imports, ensure the files exist
+   here — writing a baseline (derived from the norms defaults, which mirror the
+   real public constants) only when a file is MISSING. Never clobber a real
+   scraped snapshot. norms.ts stays pure (no JSON import) to avoid any load-order
+   coupling; these files drive the /data provenance display and the generator. */
+
+const CALIB_DIR = path.join(DATA_DIR, "calibration");
+fs.mkdirSync(CALIB_DIR, { recursive: true });
+
+function ensureFile(rel: string, build: () => unknown) {
+  const p = path.join(DATA_DIR, rel);
+  if (fs.existsSync(p)) return;
+  fs.mkdirSync(path.dirname(p), { recursive: true });
+  fs.writeFileSync(p, JSON.stringify(build(), null, 2), "utf8");
+  console.log(`  ensured ${rel} (baseline; refresh via scrapers/run_all.py)`);
+}
+
+const baselineNote =
+  "baseline embedded from norms defaults (mirror of the real public constant); refresh via scrapers/run_all.py";
+
+ensureFile("calibration/coal_prices.json", () => ({
+  feed: "coal_prices", provenance: "CALIBRATED",
+  source_url: "https://coal.gov.in/en/major-statistics/coal-grade",
+  fetched_at: AS_OF, status: "BASELINE", note: baselineNote,
+  params: { gradeBands: GRADE_BANDS },
+}));
+ensureFile("calibration/norms.json", () => ({
+  feed: "norms", provenance: "CALIBRATED",
+  source_url: "CEA design norms + KERC tariff norms",
+  fetched_at: AS_OF, status: "BASELINE", note: baselineNote,
+  params: {
+    coalNorms: {
+      transitQuantityLossPct: COAL_NORMS.transitQuantityLossPct,
+      transitCvLossKcal: COAL_NORMS.transitCvLossKcal,
+      storageLossPctPer10Days: COAL_NORMS.storageLossPctPer10Days,
+      storageCvToleranceKcal: COAL_NORMS.storageCvToleranceKcal,
+      extraCoalPctPer100Kcal: COAL_NORMS.extraCoalPctPer100Kcal,
+    },
+    plantNorms: { omEscalationPct: PLANT_NORMS.omEscalationPct },
+  },
+}));
+ensureFile("calibration/freight.json", () => ({
+  feed: "freight", provenance: "CALIBRATED",
+  source_url: "Railway Board freight + demurrage circular",
+  fetched_at: AS_OF, status: "BASELINE", note: baselineNote,
+  params: {
+    demurragePerWagonHour: COAL_NORMS.demurragePerWagonHour,
+    freeTimeHours: COAL_NORMS.freeTimeHours,
+    freightSlabs: [],
+  },
+}));
+ensureFile("manifest.json", () => ({
+  generatedAt: AS_OF,
+  note: "Baseline manifest (scrapers not yet run). Run scrapers/run_all.py to refresh.",
+  sources: [
+    { feed: "coal_prices", label: "CALIBRATED CIL grade bands + prices", provenance: "CALIBRATED", status: "BASELINE", powers: ["/coal", "/data"], count: GRADE_BANDS.length, calibration: true, note: baselineNote },
+    { feed: "freight", label: "CALIBRATED railway freight + demurrage", provenance: "CALIBRATED", status: "BASELINE", powers: ["/coal/demurrage", "/data"], count: 2, calibration: true, note: baselineNote },
+    { feed: "norms", label: "CALIBRATED CEA/KERC norm parameters", provenance: "CALIBRATED", status: "BASELINE", powers: ["/coal", "/regulatory"], count: 6, calibration: true, note: baselineNote },
+    { feed: "clearances", label: "REAL Parivesh clearance status", provenance: "REAL", status: "PENDING", powers: ["/projects/clearances", "/data"], count: 0, calibration: false, note: "Run scrapers/parivesh locally." },
+    { feed: "cases", label: "REAL eCourts case status", provenance: "REAL", status: "PENDING", powers: ["/legal", "/data"], count: 0, calibration: false, note: "Run scrapers/ecourts locally." },
+    { feed: "tenders", label: "REAL KPCL tenders", provenance: "REAL", status: "PENDING", powers: ["/contracts/spend", "/projects/retenders"], count: 0, calibration: false, note: "Run scrapers/eproc locally." },
+    { feed: "cag", label: "REAL published audit findings", provenance: "REAL", status: "PENDING", powers: ["/regulatory/audit-paras", "/data"], count: 0, calibration: false, note: "Run scrapers/cag locally." },
+  ],
+  summary: { live: 0, baseline: 3, pending: 4, skipped: 0, stale: 0, error: 0 },
+}));
 
 /* ── Headline sanity print (tune §8: ₹55–90 cr) ──────────────── */
 

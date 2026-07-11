@@ -1,0 +1,115 @@
+{
+  "feed": "coal_prices",
+  "provenance": "CALIBRATED",
+  "source_url": "https://coal.gov.in/en/major-statistics/coal-grade",
+  "fetched_at": "2026-07-11T06:56:31Z",
+  "status": "LIVE",
+  "robots": "robots.txt unreachable (treated as allow for public GET)",
+  "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",
+  "params": {
+    "gradeBands": [
+      {
+        "grade": "G1",
+        "minGcv": 7001,
+        "maxGcv": 8000,
+        "pitheadPrice": 3360
+      },
+      {
+        "grade": "G2",
+        "minGcv": 6701,
+        "maxGcv": 7000,
+        "pitheadPrice": 3040
+      },
+      {
+        "grade": "G3",
+        "minGcv": 6401,
+        "maxGcv": 6700,
+        "pitheadPrice": 2810
+      },
+      {
+        "grade": "G4",
+        "minGcv": 6101,
+        "maxGcv": 6400,
+        "pitheadPrice": 2600
+      },
+      {
+        "grade": "G5",
+        "minGcv": 5801,
+        "maxGcv": 6100,
+        "pitheadPrice": 2530
+      },
+      {
+        "grade": "G6",
+        "minGcv": 5501,
+        "maxGcv": 5800,
+        "pitheadPrice": 2450
+      },
+      {
+        "grade": "G7",
+        "minGcv": 5201,
+        "maxGcv": 5500,
+        "pitheadPrice": 2260
+      },
+      {
+        "grade": "G8",
+        "minGcv": 4901,
+        "maxGcv": 5200,
+        "pitheadPrice": 2070
+      },
+      {
+        "grade": "G9",
+        "minGcv": 4601,
+        "maxGcv": 4900,
+        "pitheadPrice": 1890
+      },
+      {
+        "grade": "G10",
+        "minGcv": 4301,
+        "maxGcv": 4600,
+        "pitheadPrice": 1700
+      },
+      {
+        "grade": "G11",
+        "minGcv": 4001,
+        "maxGcv": 4300,
+        "pitheadPrice": 1510
+      },
+      {
+        "grade": "G12",
+        "minGcv": 3701,
+        "maxGcv": 4000,
+        "pitheadPrice": 1320
+      },
+      {
+        "grade": "G13",
+        "minGcv": 3401,
+        "maxGcv": 3700,
+        "pitheadPrice": 1140
+      },
+      {
+        "grade": "G14",
+        "minGcv": 3101,
+        "maxGcv": 3400,
+        "pitheadPrice": 950
+      },
+      {
+        "grade": "G15",
+        "minGcv": 2801,
+        "maxGcv": 3100,
+        "pitheadPrice": 820
+      },
+      {
+        "grade": "G16",
+        "minGcv": 2501,
+        "maxGcv": 2800,
+        "pitheadPrice": 700
+      },
+      {
+        "grade": "G17",
+        "minGcv": 2201,
+        "maxGcv": 2500,
+        "pitheadPrice": 590
+      }
+    ]
+  }
+}

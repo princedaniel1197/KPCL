@@ -1,0 +1,43 @@
+{
+  "feed": "freight",
+  "provenance": "CALIBRATED",
+  "source_url": "https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,1,304,366,554",
+  "fetched_at": "2026-07-11T06:56:31Z",
+  "status": "LIVE",
+  "robots": "robots.txt unreachable (treated as allow for public GET)",
+  "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",
+  "params": {
+    "freightSlabs": [
+      {
+        "uptoKm": 300,
+        "ratePerTonne": 520
+      },
+      {
+        "uptoKm": 500,
+        "ratePerTonne": 720
+      },
+      {
+        "uptoKm": 700,
+        "ratePerTonne": 1050
+      },
+      {
+        "uptoKm": 900,
+        "ratePerTonne": 1210
+      },
+      {
+        "uptoKm": 1100,
+        "ratePerTonne": 1380
+      },
+      {
+        "uptoKm": 1300,
+        "ratePerTonne": 1520
+      },
+      {
+        "uptoKm": 1600,
+        "ratePerTonne": 1760
+      }
+    ],
+    "demurragePerWagonHour": 150,
+    "freeTimeHours": 6
+  }
+}
