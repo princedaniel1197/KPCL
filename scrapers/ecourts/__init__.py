@@ -29,14 +29,20 @@ BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # KPCL-focused queries. Generic ones are filtered to KPCL-relevant titles below.
 QUERIES = [
     "Karnataka Power Corporation Limited",
+    "Karnataka Power Corporation vs",
+    "Karnataka Power Corporation arbitration",
+    "Karnataka Power Corporation land acquisition",
+    "Karnataka Power Corporation contractor",
+    "Karnataka Power Corporation coal supply",
+    "Karnataka Power Corporation service",
     "Raichur Power Corporation",  # RPCL (YTPS JV)
     "Raichur Thermal Power Station",
     "Bellary Thermal Power Station",
     "Yeramarus Thermal Power",
     "Sharavathi Pumped Storage",
-    "Karnataka Power Corporation coal supply",
+    "Emta Coal Karnataka Power",
 ]
-PAGES_PER_QUERY = 3  # ~10 results/page
+PAGES_PER_QUERY = 5  # ~10 results/page
 
 # A title must mention one of these to be kept (removes tangential hits).
 KEEP = re.compile(
