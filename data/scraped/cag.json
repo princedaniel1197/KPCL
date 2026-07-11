@@ -1,11 +1,11 @@
 {
   "feed": "cag",
   "provenance": "REAL",
-  "source_url": "https://cag.gov.in/en/audit-report?field_state_target_id=Karnataka",
-  "fetched_at": "2026-07-11T07:35:15Z",
+  "source_url": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
+  "fetched_at": "2026-07-11T07:49:27Z",
   "status": "LIVE",
-  "robots": "robots.txt unreachable (treated as allow for public GET)",
-  "note": "Published CAG findings on KPCL/RPCL (documented context, not new allegations). Extend from the CAG Karnataka report library locally.",
+  "robots": "allowed",
+  "note": "Live-fetched CAG PDF (28k chars); 3 findings verified present in the document.",
   "records": [
     {
       "entity": "RPCL / KPCL — YTPS Yeramarus",
@@ -14,16 +14,8 @@
       "figureCr": 12915.9,
       "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
       "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
-      "provenance": "REAL"
-    },
-    {
-      "entity": "RPCL / KPCL — YTPS Yeramarus",
-      "subject": "Cost of generation per unit escalated",
-      "detail": "Per-unit generation cost rose from ₹3.24 to ₹5.36 (provisional).",
-      "figureCr": null,
-      "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
-      "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
-      "provenance": "REAL"
+      "provenance": "REAL",
+      "verifiedInSource": true
     },
     {
       "entity": "Karnataka ESCOMs (YTPS deficit)",
@@ -32,16 +24,18 @@
       "figureCr": 2517.92,
       "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
       "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
-      "provenance": "REAL"
+      "provenance": "REAL",
+      "verifiedInSource": true
     },
     {
-      "entity": "KPCL — BTPS Ballari",
-      "subject": "Delay in levy of liquidated damages (BHEL); avoidable entry tax",
-      "detail": "2×500 MW (Unit-I Mar 2009, Unit-II Feb 2013). BHEL tardiness on Unit-II; LD levy delayed. ₹5.88 cr entry tax (2009-11) avoidable.",
-      "figureCr": 5.88,
-      "citation": "CAG Report No. 9 of 2014 — Performance Audit, BTPS (Karnataka PSUs)",
-      "sourceUrl": "https://www.saiindia.gov.in/uploads/download_audit_report/2014/Karnataka_Report_9_2014_chap_2.pdf",
-      "provenance": "REAL"
+      "entity": "Raichur Power Corporation Limited (RPCL)",
+      "subject": "Losses incurred by RPCL",
+      "detail": "CAG recorded losses of ₹1,562.76 cr at RPCL (alongside GESCOM ₹312.84 cr and HESCOM ₹140.28 cr).",
+      "figureCr": 1562.76,
+      "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
+      "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
+      "provenance": "REAL",
+      "verifiedInSource": true
     }
   ]
 }
