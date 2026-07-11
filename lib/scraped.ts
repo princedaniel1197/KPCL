@@ -9,6 +9,7 @@ import casesJson from "@/data/scraped/cases.json";
 import cagJson from "@/data/scraped/cag.json";
 import reservoirsJson from "@/data/scraped/reservoirs.json";
 import kercJson from "@/data/scraped/kerc.json";
+import ceaDgrJson from "@/data/scraped/cea_dgr.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -83,11 +84,35 @@ export interface KercNorm {
   source: string;
 }
 
+export interface CeaDgrUnit {
+  unit: string;
+  capacityMW: number | null;
+  todayActualMU: number | null;
+  outageMW: number | null;
+  outageDate?: string | null;
+  remark?: string | null;
+}
+export interface CeaDgrStation {
+  plant: string; // BTPS | RTPS | YTPS
+  station: string;
+  capacityMW: number | null;
+  todayProgMU: number | null;
+  todayActualMU: number | null;
+  fytdProgMU: number | null;
+  fytdActualMU: number | null;
+  coalStockDays: number | null;
+  outageMW: number | null;
+  units: CeaDgrUnit[];
+  reportDate?: string;
+  source?: string;
+}
+
 export const scrapedClearances = env<ClearanceRecord>(clearancesJson);
 export const scrapedCases = env<CaseRecord>(casesJson);
 export const scrapedCag = env<CagRecord>(cagJson);
 export const scrapedReservoirs = env(reservoirsJson);
 export const scrapedKerc = env<KercNorm>(kercJson);
+export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
 
 export function hasReal<T>(e: ScrapedEnvelope<T>): boolean {
   return e.status === "LIVE" && e.records.length > 0;

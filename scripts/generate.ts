@@ -228,7 +228,7 @@ ensureFile("calibration/freight.json", () => ({
 }));
 // Ensure REAL scraped envelopes exist (empty until the scrapers run) so pages can
 // statically import them without a clean build breaking. Empty records — never fabricated.
-for (const feed of ["clearances", "cases", "cag", "reservoirs", "kerc"]) {
+for (const feed of ["clearances", "cases", "cag", "reservoirs", "kerc", "cea_dgr"]) {
   ensureFile(`scraped/${feed}.json`, () => ({
     feed, provenance: "REAL", source_url: "", fetched_at: AS_OF,
     status: "PENDING", note: "Run scrapers/run_all.py to populate real public data.",

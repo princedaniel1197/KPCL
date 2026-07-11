@@ -1,0 +1,160 @@
+{
+  "feed": "cea_dgr",
+  "provenance": "REAL",
+  "source_url": "https://npp.gov.in/publishedReports (CEA Daily Generation Report, subreport-2)",
+  "fetched_at": "2026-07-11T15:15:31Z",
+  "status": "LIVE",
+  "robots": "allowed",
+  "note": "CEA DGR 09.07.2026 via NPP: 3 KPCL thermal stations, 4 units under outage. Real gen/coal-stock/outage figures.",
+  "records": [
+    {
+      "plant": "BTPS",
+      "station": "Bellary Tps",
+      "capacityMW": 1700.0,
+      "todayProgMU": 17.42,
+      "todayActualMU": 22.07,
+      "fytdProgMU": 2369.78,
+      "fytdActualMU": 3025.41,
+      "coalStockDays": 16.0,
+      "outageMW": 700.0,
+      "units": [
+        {
+          "unit": "U1",
+          "capacityMW": 500.0,
+          "todayActualMU": 10.07,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U2",
+          "capacityMW": 500.0,
+          "todayActualMU": 10.14,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U3",
+          "capacityMW": 700.0,
+          "todayActualMU": 1.86,
+          "outageMW": 700.0,
+          "outageDate": "09.07.2026",
+          "remark": "WATER WALL TUBE LEAKAGE"
+        }
+      ],
+      "provenance": "REAL",
+      "reportDate": "09.07.2026"
+    },
+    {
+      "plant": "RTPS",
+      "station": "Raichur Tps",
+      "capacityMW": 1720.0,
+      "todayProgMU": 17.1,
+      "todayActualMU": 18.88,
+      "fytdProgMU": 2362.3,
+      "fytdActualMU": 2642.02,
+      "coalStockDays": 17.0,
+      "outageMW": 670.0,
+      "units": [
+        {
+          "unit": "U1",
+          "capacityMW": 210.0,
+          "todayActualMU": 0.0,
+          "outageMW": 210.0,
+          "outageDate": "15.03.2024",
+          "remark": "COAL FEEDING SYSTEM FAILURE."
+        },
+        {
+          "unit": "U2",
+          "capacityMW": 210.0,
+          "todayActualMU": 4.45,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U3",
+          "capacityMW": 210.0,
+          "todayActualMU": 1.97,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": "WATER WALL TUBE LEAKAGE"
+        },
+        {
+          "unit": "U4",
+          "capacityMW": 210.0,
+          "todayActualMU": 0.0,
+          "outageMW": 210.0,
+          "outageDate": "27.06.2026",
+          "remark": "MAJOR REPAIRS IN BOILER"
+        },
+        {
+          "unit": "U5",
+          "capacityMW": 210.0,
+          "todayActualMU": 3.4,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U6",
+          "capacityMW": 210.0,
+          "todayActualMU": 4.14,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U7",
+          "capacityMW": 210.0,
+          "todayActualMU": 4.92,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U8",
+          "capacityMW": 250.0,
+          "todayActualMU": 0.0,
+          "outageMW": 250.0,
+          "outageDate": "26.05.2026",
+          "remark": "WATER WALL TUBE LEAKAGE"
+        }
+      ],
+      "provenance": "REAL",
+      "reportDate": "09.07.2026"
+    },
+    {
+      "plant": "YTPS",
+      "station": "Yermarus Tpp",
+      "capacityMW": 1600.0,
+      "todayProgMU": 10.52,
+      "todayActualMU": 27.53,
+      "fytdProgMU": 1893.68,
+      "fytdActualMU": 2410.95,
+      "coalStockDays": 15.0,
+      "outageMW": 0.0,
+      "units": [
+        {
+          "unit": "U1",
+          "capacityMW": 800.0,
+          "todayActualMU": 12.98,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        },
+        {
+          "unit": "U2",
+          "capacityMW": 800.0,
+          "todayActualMU": 14.55,
+          "outageMW": 0.0,
+          "outageDate": null,
+          "remark": null
+        }
+      ],
+      "provenance": "REAL",
+      "reportDate": "09.07.2026"
+    }
+  ]
+}
