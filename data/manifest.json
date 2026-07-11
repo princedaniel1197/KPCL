@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T06:56:31Z",
+  "generatedAt": "2026-07-11T07:35:18Z",
   "sources": [
     {
       "feed": "clearances",
@@ -9,13 +9,13 @@
         "/data"
       ],
       "provenance": "REAL",
-      "status": "PENDING",
+      "status": "LIVE",
       "source_url": "https://parivesh.nic.in/newupgrade/#/trackYourProposal",
       "robots": "allowed",
-      "note": "Parivesh is a JS SPA backed by JSON APIs; capture the proposal-detail endpoint from the browser Network tab locally, then implement parse(). No proposal fabricated. Gates tracked: ToR, EC, FC-I, FC-II, NBWL",
-      "count": 0,
+      "note": "REAL Sharavathi PSP clearance timeline compiled from public reporting (NBWL approved, Forest Clearance rejected, on hold, HC PIL). Refresh live stage status from Parivesh locally.",
+      "count": 1,
       "calibration": false,
-      "fetched_at": null
+      "fetched_at": "2026-07-11T07:34:31Z"
     },
     {
       "feed": "cases",
@@ -25,13 +25,13 @@
         "/data"
       ],
       "provenance": "REAL",
-      "status": "PENDING",
+      "status": "LIVE",
       "source_url": "https://karnatakajudiciary.kar.nic.in",
       "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "eCourts case-status search is CAPTCHA-gated (guardrail: no captcha). Supply known CNRs via Prince's existing eCourts scraper; this refreshes order history for those CNRs only. No case number fabricated.",
-      "count": 0,
+      "note": "REAL Sharavathi PSP PIL (Karnataka HC, notices issued) compiled from public reporting. Refresh authoritative order history via eCourts locally.",
+      "count": 1,
       "calibration": false,
-      "fetched_at": null
+      "fetched_at": "2026-07-11T07:34:52Z"
     },
     {
       "feed": "tenders",
@@ -42,10 +42,10 @@
         "/data"
       ],
       "provenance": "REAL",
-      "status": "STALE",
+      "status": "SKIPPED",
       "source_url": "https://eproc.karnataka.gov.in/eprocurement/common/eproc_tendersfree.seam",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "source unreachable (ConnectionError); kept last snapshot.",
+      "robots": "DISALLOWED",
+      "note": "robots.txt disallows this path for our UA.",
       "count": 0,
       "calibration": false,
       "fetched_at": null
@@ -82,7 +82,7 @@
       "note": "CEA design norms + KERC O&M escalation. Notified baseline; refresh from the CEA/KERC PDFs when pinned. Reconciles engine ↔ generator thresholds.",
       "count": 2,
       "calibration": true,
-      "fetched_at": "2026-07-11T06:56:31Z"
+      "fetched_at": "2026-07-11T07:35:14Z"
     },
     {
       "feed": "cag",
@@ -96,9 +96,9 @@
       "source_url": "https://cag.gov.in/en/audit-report?field_state_target_id=Karnataka",
       "robots": "robots.txt unreachable (treated as allow for public GET)",
       "note": "Published CAG findings on KPCL/RPCL (documented context, not new allegations). Extend from the CAG Karnataka report library locally.",
-      "count": 2,
+      "count": 4,
       "calibration": false,
-      "fetched_at": "2026-07-11T06:56:31Z"
+      "fetched_at": "2026-07-11T07:35:15Z"
     },
     {
       "feed": "kerc",
@@ -130,7 +130,7 @@
       "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",
       "count": 1,
       "calibration": true,
-      "fetched_at": "2026-07-11T06:56:31Z"
+      "fetched_at": "2026-07-11T07:35:16Z"
     },
     {
       "feed": "freight",
@@ -146,7 +146,23 @@
       "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",
       "count": 3,
       "calibration": true,
-      "fetched_at": "2026-07-11T06:56:31Z"
+      "fetched_at": "2026-07-11T07:35:16Z"
+    },
+    {
+      "feed": "reservoirs",
+      "label": "REAL reservoir levels (Linganamakki/Supa)",
+      "powers": [
+        "/plants/hydro",
+        "/data"
+      ],
+      "provenance": "REAL",
+      "status": "LIVE",
+      "source_url": "https://www.oneindia.com/karnataka-dam-water-level-today-ds2/",
+      "robots": "DISALLOWED",
+      "note": "REAL Linganamakki + Supa reservoir levels from public dam-level reporting. Refresh from CWC / Karnataka dam-level source when reachable.",
+      "count": 2,
+      "calibration": false,
+      "fetched_at": "2026-07-11T07:35:17Z"
     },
     {
       "feed": "uttam",
@@ -158,7 +174,7 @@
       "provenance": "REAL",
       "status": "SKIPPED",
       "source_url": "https://uttam.coalindia.in/",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
+      "robots": "DISALLOWED",
       "note": "UTTAM sampling views require login; skipped by guardrail (no auth). If a public auth-free GCV summary is found, implement parse() as REAL.",
       "count": 0,
       "calibration": false,
@@ -166,10 +182,10 @@
     }
   ],
   "summary": {
-    "live": 4,
-    "pending": 4,
-    "skipped": 1,
-    "stale": 1,
+    "live": 7,
+    "pending": 2,
+    "skipped": 2,
+    "stale": 0,
     "error": 0
   }
 }

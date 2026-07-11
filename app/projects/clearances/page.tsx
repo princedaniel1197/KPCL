@@ -13,6 +13,11 @@ import { AS_OF } from "@/lib/data";
 import { projectHealth } from "@/lib/engines/execution";
 import { contractorName, crToInr, scopeQs, scopedProjects } from "@/lib/views/projects";
 import { dateFmt, inrCr, num } from "@/lib/format";
+import { hasReal, scrapedClearances } from "@/lib/scraped";
+import { ProvenanceChip } from "@/components/ui/ProvenanceChip";
+
+const gateTone = (s: string) =>
+  s === "CLEARED" ? "success" : s === "BLOCKED" || s === "ON_HOLD" ? "danger" : "warning";
 
 export default function Clearances({ searchParams }: { searchParams: SearchParams }) {
   const lang = getLang();
@@ -29,6 +34,60 @@ export default function Clearances({ searchParams }: { searchParams: SearchParam
       <p className="text-[0.7rem] text-muted mb-2">
         Clearance gates are cumulative statutory state — the period selector does not filter this view.
       </p>
+
+      {hasReal(scrapedClearances) &&
+        scrapedClearances.records.map((r) => (
+          <section key={r.proposalTitle} className="panel p-4 mb-6 border-l-2 border-success">
+            <div className="flex items-center justify-between gap-3 flex-wrap mb-2">
+              <h2 className="font-serif text-xl font-semibold">{r.proposalTitle}</h2>
+              <ProvenanceChip provenance="REAL" source="Parivesh / MoEFCC / NBWL" fetched={scrapedClearances.fetched_at.slice(0, 10)} />
+            </div>
+            <p className="text-[0.78rem] text-muted mb-3">
+              {r.proponent} · {num(r.capacityMW)} MW
+              {r.forestDiversionAcres ? ` · ${num(r.forestDiversionAcres)} acres forest diversion` : ""}
+              {r.treesAffected ? ` · ~${num(r.treesAffected)} trees` : ""}
+              {r.sanctuary ? ` · ${r.sanctuary}` : ""}
+            </p>
+            <div className="overflow-x-auto">
+              <table className="ledger min-w-[640px]">
+                <thead>
+                  <tr><th>Gate</th><th>Status</th><th>Date</th><th>Note (public record)</th></tr>
+                </thead>
+                <tbody>
+                  {r.gates.map((g) => (
+                    <tr key={g.key}>
+                      <td className="font-medium whitespace-nowrap">{g.label}</td>
+                      <td><Chip tone={gateTone(g.status)}>{g.status.replace("_", " ").toLowerCase()}</Chip></td>
+                      <td className="whitespace-nowrap">{g.date}</td>
+                      <td className="text-muted text-[0.75rem]">{g.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {r.litigation && (
+              <p className="text-[0.75rem] text-muted mt-2">
+                <span className="font-semibold text-ink">Litigation:</span> {r.litigation}
+              </p>
+            )}
+            <p className="text-[0.68rem] text-faint mt-2">
+              Real public record — this is the actual Sharavathi PSP, its NBWL approval granted while
+              Forest Clearance was rejected and the project put on hold. The synthetic portfolio below
+              demonstrates the same detector on modelled projects.
+              {r.sources?.length ? (
+                <>
+                  {" "}Sources:{" "}
+                  {r.sources.map((s, i) => (
+                    <span key={s}>
+                      {i > 0 && ", "}
+                      <a className="underline" href={s} target="_blank" rel="noopener noreferrer">[{i + 1}]</a>
+                    </span>
+                  ))}
+                </>
+              ) : null}
+            </p>
+          </section>
+        ))}
 
       {gated.length === 0 && (
         <p className="text-muted text-sm">No project with statutory gates in this plant scope.</p>

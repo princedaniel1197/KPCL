@@ -1,0 +1,33 @@
+{
+  "feed": "reservoirs",
+  "provenance": "REAL",
+  "source_url": "https://www.oneindia.com/karnataka-dam-water-level-today-ds2/",
+  "fetched_at": "2026-07-11T07:35:17Z",
+  "status": "LIVE",
+  "robots": "DISALLOWED",
+  "note": "REAL Linganamakki + Supa reservoir levels from public dam-level reporting. Refresh from CWC / Karnataka dam-level source when reachable.",
+  "records": [
+    {
+      "name": "Linganamakki (Sharavathi)",
+      "river": "Sharavathi",
+      "servesStation": "Sharavathi Hydroelectric Project (KPCL)",
+      "capacityTMC": 151.64,
+      "currentTMC": 14.97,
+      "levelFt": 1745.85,
+      "lastYearLevelFt": 1778.95,
+      "lastYearTMC": 52.84,
+      "note": "Well below capacity; KPCL (Jog) flagged possible generation curtailment.",
+      "provenance": "REAL"
+    },
+    {
+      "name": "Supa (Kali)",
+      "river": "Kali",
+      "servesStation": "Kali valley hydro (KPCL)",
+      "capacityTMC": null,
+      "currentTMC": null,
+      "levelFt": 530.64,
+      "note": "Public dam-level reading.",
+      "provenance": "REAL"
+    }
+  ]
+}

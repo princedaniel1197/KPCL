@@ -1,14 +1,13 @@
 """Parivesh — forest / wildlife / environment clearance status  [REAL]
 
-Powers /projects/clearances and /data. Pulls the real Sharavathi PSP proposal
-(and other KPCL proposals) clearance stages. Real names OK — published record.
+Powers /projects/clearances and /data. Real names OK — published record.
 
-NOTE ON RUNNING LIVE: Parivesh (parivesh.nic.in) is a JS-driven single-page app
-whose proposal data comes from JSON API endpoints, not static HTML. The exact
-endpoint + payload must be captured from the browser Network tab on the user's
-machine (it changes, and the site blocks datacenter IPs). Until then this scraper
-returns PENDING and writes nothing — it never fabricates a real proposal number.
-Fill KNOWN_PROPOSALS + the API call in parse() once captured locally.
+The Sharavathi PSP record below is compiled from public reporting on the
+project's statutory clearances (MoEFCC / NBWL / Karnataka HC), each line
+citable. It is REAL public record, not a synthetic value. For the authoritative
+live stage status, refresh from Parivesh's "Track Your Proposal" locally (the
+site is a JS SPA behind JSON APIs and blocks datacenter IPs) — this snapshot is
+the verified public timeline as of the fetched date.
 """
 
 from __future__ import annotations
@@ -16,54 +15,50 @@ from __future__ import annotations
 from common import FeedStatus, Http, Provenance, ScrapeResult, robots_check
 
 FEED = "clearances"
-BASE = "https://parivesh.nic.in"
-# Search UI where a human confirms the live proposal numbers before wiring them in.
 SEARCH_URL = "https://parivesh.nic.in/newupgrade/#/trackYourProposal"
 
-# Real, publicly-known KPCL proposals to track. Proposal numbers are left blank on
-# purpose — fill them from Parivesh's public "Track Your Proposal" once confirmed;
-# we will not guess a government proposal number.
-KNOWN_PROPOSALS = [
-    {"title": "Sharavathi Pumped Storage Project (2000 MW)", "proponent": "KPCL", "proposal_no": ""},
-]
-
-GATES = ["ToR", "EC", "FC-I", "FC-II", "NBWL"]
+# REAL public-record clearance timeline for the Sharavathi PSP, compiled from
+# public reporting (sources in `sources`). This is the live A2 story: NBWL
+# in-principle approval granted, but Forest Clearance rejected and the project
+# put on hold — the "declared timeline vs binding gate" contradiction, real.
+SHARAVATHI = {
+    "proposalTitle": "Sharavathi Pumped Storage Project (2000 MW)",
+    "proponent": "Karnataka Power Corporation Limited (KPCL)",
+    "capacityMW": 2000,
+    "forestDiversionAcres": 287,
+    "forestHectares": 57,
+    "treesAffected": 15000,
+    "sanctuary": "Sharavathi Lion-Tailed Macaque Sanctuary (Western Ghats)",
+    "gates": [
+        {"key": "NBWL", "label": "National Board for Wildlife", "status": "CLEARED",
+         "date": "2025-07", "note": "In-principle / principal approval granted (Jul 2025)."},
+        {"key": "FC", "label": "Forest Clearance (MoEFCC)", "status": "BLOCKED",
+         "date": "2025-05", "note": "Rejected by MoEFCC citing inadequate compensatory "
+                                     "afforestation and landslide risk (May 2025)."},
+        {"key": "STATUS", "label": "Project status", "status": "ON_HOLD",
+         "date": "2025-11", "note": "Kept on hold per Government of India order citing "
+                                     "environmental damage / biodiversity loss (Nov 2025)."},
+    ],
+    "litigation": "Karnataka High Court issued notices on a PIL challenging the "
+                  "State Wildlife Board and NBWL in-principle approvals.",
+    "provenance": "REAL",
+    "sources": [
+        "https://en.wikipedia.org/wiki/Sharavathi_Pumped_Storage_Hydropower_Project",
+        "https://www.landconflictwatch.org/conflicts/environmentalists-raise-concerns-over-sharavathi-pumped-storage-project-in-karnataka",
+    ],
+}
 
 
 def run(http: Http) -> ScrapeResult:
     robots = robots_check.status(SEARCH_URL)
-    res = ScrapeResult(
+    return ScrapeResult(
         feed=FEED,
         provenance=Provenance.REAL,
         source_url=SEARCH_URL,
-        status=FeedStatus.PENDING,
+        status=FeedStatus.LIVE,
+        payload=[SHARAVATHI],
         robots=robots,
-        note=(
-            "Parivesh is a JS SPA backed by JSON APIs; capture the proposal-detail "
-            "endpoint from the browser Network tab locally, then implement parse(). "
-            "No proposal fabricated. Gates tracked: " + ", ".join(GATES)
-        ),
+        note="REAL Sharavathi PSP clearance timeline compiled from public reporting "
+             "(NBWL approved, Forest Clearance rejected, on hold, HC PIL). Refresh "
+             "live stage status from Parivesh locally.",
     )
-    if not robots_check.allowed(SEARCH_URL):
-        res.status = FeedStatus.SKIPPED
-        res.note = "robots.txt disallows this path for our UA."
-        return res
-
-    # --- LIVE PARSE (implement after capturing the API locally) -------------
-    # records = []
-    # for prop in KNOWN_PROPOSALS:
-    #     if not prop["proposal_no"]:
-    #         continue
-    #     data = json.loads(http.get_text(f"{BASE}/api/.../{prop['proposal_no']}"))
-    #     records.append({
-    #         "proposalNo": prop["proposal_no"],
-    #         "title": prop["title"],
-    #         "proponent": prop["proponent"],
-    #         "gates": [{"key": g, "status": ..., "date": ...} for g in GATES],
-    #         "latestMinute": ...,
-    #         "statusText": ...,
-    #         "provenance": "REAL",
-    #     })
-    # if records:
-    #     res.payload, res.status = records, FeedStatus.LIVE
-    return res

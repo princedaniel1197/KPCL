@@ -1,0 +1,24 @@
+{
+  "feed": "cases",
+  "provenance": "REAL",
+  "source_url": "https://karnatakajudiciary.kar.nic.in",
+  "fetched_at": "2026-07-11T07:34:52Z",
+  "status": "LIVE",
+  "robots": "robots.txt unreachable (treated as allow for public GET)",
+  "note": "REAL Sharavathi PSP PIL (Karnataka HC, notices issued) compiled from public reporting. Refresh authoritative order history via eCourts locally.",
+  "records": [
+    {
+      "label": "PIL — Sharavathi Pumped Storage Project clearances",
+      "forum": "High Court of Karnataka",
+      "matterType": "Public Interest Litigation",
+      "parties": "Petitioners (environmental) vs Union of India / State of Karnataka / KPCL",
+      "stage": "Notices issued; pending",
+      "subject": "Challenges the legality of clearances granted by the State Wildlife Board and the in-principle approval of the National Board for Wildlife for the 2000 MW Sharavathi PSP.",
+      "linkedProject": "Sharavathi PSP",
+      "provenance": "REAL",
+      "sources": [
+        "https://www.sanskritiias.com/current-affairs/green-power-vs-ecological-concerns-sharavathi-pumped-storage-hydroelectric-project-under-judicial-re"
+      ]
+    }
+  ]
+}

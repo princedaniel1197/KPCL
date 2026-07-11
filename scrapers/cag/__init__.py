@@ -18,24 +18,48 @@ from common import FeedStatus, Http, Provenance, ScrapeResult, robots_check
 FEED = "cag"
 LIBRARY = "https://cag.gov.in/en/audit-report?field_state_target_id=Karnataka"
 
-# Published CAG findings cited in the build spec, each with its report reference.
-# REAL public-record context (already published by CAG about KPCL/RPCL).
+# Published CAG findings on KPCL/RPCL, with report references verified against the
+# CAG report library. REAL public-record context (already published by CAG) —
+# documented context, NOT new allegations.
 CITED_FINDINGS = [
     {
-        "entity": "KPCL",
-        "subject": "YTPS Stage additional cost / time overrun",
-        "figureCr": 2517.92,
-        "citation": "CAG Report — Karnataka PSUs (as cited in Sentinel brief)",
+        "entity": "RPCL / KPCL — YTPS Yeramarus",
+        "subject": "Cost & time overrun; project cost escalation",
+        "detail": "Project cost rose from ₹8,806.23 cr (Apr 2009 estimate) to "
+                  "₹12,915.90 cr (provisional, Mar 2018) due to delays.",
+        "figureCr": 12915.90,
+        "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
+        "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
         "provenance": "REAL",
-        "note": "Public audit finding; shown as documented context, not a new allegation.",
     },
     {
-        "entity": "KPCL",
-        "subject": "ESCerts / energy-savings certificates shortfall",
-        "figureCr": 107.39,
-        "citation": "CAG Report — Karnataka PSUs (as cited in Sentinel brief)",
+        "entity": "RPCL / KPCL — YTPS Yeramarus",
+        "subject": "Cost of generation per unit escalated",
+        "detail": "Per-unit generation cost rose from ₹3.24 to ₹5.36 (provisional).",
+        "figureCr": None,
+        "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
+        "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
         "provenance": "REAL",
-        "note": "Public audit finding; documented context.",
+    },
+    {
+        "entity": "Karnataka ESCOMs (YTPS deficit)",
+        "subject": "Extra power-procurement cost from YTPS delay",
+        "detail": "22,283.03 MU of short/medium-term power procured (2014-15 to "
+                  "2017-18) to meet the deficit, at ₹2,517.92 cr additional cost.",
+        "figureCr": 2517.92,
+        "citation": "CAG Report No. 5 of 2019 (PSUs, Government of Karnataka)",
+        "sourceUrl": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
+        "provenance": "REAL",
+    },
+    {
+        "entity": "KPCL — BTPS Ballari",
+        "subject": "Delay in levy of liquidated damages (BHEL); avoidable entry tax",
+        "detail": "2×500 MW (Unit-I Mar 2009, Unit-II Feb 2013). BHEL tardiness on "
+                  "Unit-II; LD levy delayed. ₹5.88 cr entry tax (2009-11) avoidable.",
+        "figureCr": 5.88,
+        "citation": "CAG Report No. 9 of 2014 — Performance Audit, BTPS (Karnataka PSUs)",
+        "sourceUrl": "https://www.saiindia.gov.in/uploads/download_audit_report/2014/Karnataka_Report_9_2014_chap_2.pdf",
+        "provenance": "REAL",
     },
 ]
 
