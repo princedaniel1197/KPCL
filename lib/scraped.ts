@@ -12,6 +12,7 @@ import kercJson from "@/data/scraped/kerc.json";
 import ceaDgrJson from "@/data/scraped/cea_dgr.json";
 import ceaCoalJson from "@/data/scraped/cea_coal.json";
 import kercChargesJson from "@/data/scraped/kerc_charges.json";
+import bidassistJson from "@/data/scraped/bidassist.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -127,6 +128,22 @@ export interface KercCharge {
   source: string;
 }
 export const scrapedKercCharges = env<KercCharge>(kercChargesJson);
+
+export interface TenderRecord {
+  tenderId: string;
+  title: string;
+  valueRs: number | null;
+  emdRs: number | null;
+  postedDate: string | null;
+  closingDate: string | null;
+  location: string | null;
+  category: string | null;
+  contractType: string | null;
+  noticeNo: string | null;
+  docCount: number | null;
+  source: string;
+}
+export const scrapedTenders = env<TenderRecord>(bidassistJson);
 export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
 
 export interface CeaCoalStation {

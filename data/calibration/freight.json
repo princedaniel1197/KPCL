@@ -2,7 +2,7 @@
   "feed": "freight",
   "provenance": "CALIBRATED",
   "source_url": "https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,1,304,366,554",
-  "fetched_at": "2026-07-11T15:34:48Z",
+  "fetched_at": "2026-07-11T18:28:14Z",
   "status": "LIVE",
   "robots": "allowed",
   "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",

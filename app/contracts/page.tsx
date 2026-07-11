@@ -10,6 +10,7 @@ import { subtitle } from "@/lib/subtitle";
 import { milestoneFlags, ldClause, repoAggregates, scopeQs, scopedContracts } from "@/lib/views/contracts";
 import { vendorById } from "@/lib/data";
 import { dateFmt, inrCr, num } from "@/lib/format";
+import { RealTenders } from "@/components/contracts/RealTenders";
 
 const MODES = ["all", "OPEN", "LIMITED", "SINGLE"] as const;
 
@@ -54,6 +55,8 @@ export default function ContractsRepo({ searchParams }: { searchParams: SearchPa
         <KpiTile label="LD accruing" value={inrCr(agg.ldAccruingCr * 1e7)} tone="danger" sub="open late milestones, un-levied" />
         <KpiTile label="BG value expiring ≤30 d" value={inrCr(agg.bgExpiring30Cr * 1e7)} tone="danger" href={`/contracts/guarantees${scopeQs(scope)}`} sub={`${num(agg.bgExpiring30Count)} guarantees`} />
       </div>
+
+      <RealTenders />
 
       <div className="flex flex-wrap gap-2 mt-6 mb-3 no-print">
         <Link href={mkQs({ cat: "all" })} className={chipCls(cat === "all")}>All categories</Link>
