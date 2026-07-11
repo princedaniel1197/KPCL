@@ -88,11 +88,22 @@ export interface ThermalUnitReal {
   specificCoal?: number;
   pafPct?: number;
 }
+export interface AnnualFinancials {
+  saleOfEnergyCr?: number;
+  saleOfEnergyPrevCr?: number;
+  totalIncomeCr?: number;
+  totalIncomePrevCr?: number;
+  operatingProfitCr?: number;
+  operatingProfitPrevCr?: number;
+  pbtCr?: number;
+  pbtPrevCr?: number;
+}
 export interface AnnualReport {
   fy: string | null;
   stations: StationGen[];
   thermal: ThermalUnitReal[];
   reservoirs: { name: string; fullLevel: string; highestLevel: string; pctCapacity: number | null }[];
+  financials: AnnualFinancials;
 }
 
 export const scrapedAnnualReport = annualReportJson as {

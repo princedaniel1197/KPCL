@@ -10,6 +10,7 @@ import { getLang, getScope, type SearchParams } from "@/lib/params";
 import { subtitle } from "@/lib/subtitle";
 import { t } from "@/lib/i18n";
 import { buildOverview } from "@/lib/views/overview";
+import { RealFinancials } from "@/components/overview/RealFinancials";
 import { inrCr, monthFmt, num } from "@/lib/format";
 
 export default function MdDashboard({ searchParams }: { searchParams: SearchParams }) {
@@ -69,6 +70,9 @@ export default function MdDashboard({ searchParams }: { searchParams: SearchPara
           ]}
         />
       </div>
+
+      {/* Real KPCL financials from the audited Annual Report */}
+      <RealFinancials />
 
       {/* Cross-module alert ledger */}
       <SectionHead title="Alert ledger" right={`${o.alerts.length} live flags`} />

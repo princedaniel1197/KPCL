@@ -79,6 +79,24 @@ def _parse_thermal(page) -> list[dict]:
     return out
 
 
+def _parse_financials(text: str) -> dict:
+    """Parse the ₹-crore financial-highlights table (standalone + prior year).
+    Columns are: 2024-25 standalone | 2024-25 consol | 2023-24 standalone | ..."""
+    fin: dict = {}
+    labels = {
+        "saleOfEnergyCr": r"Income from sale of energy",
+        "totalIncomeCr": r"Total Income",
+        "operatingProfitCr": r"Operating Profit",
+        "pbtCr": r"Profit before tax",
+    }
+    for key, lab in labels.items():
+        m = re.search(lab + r"[^\d]*([\d,]+\.\d+)\s+[\d,]+\.\d+\s+([\d,]+\.\d+)", text)
+        if m:
+            fin[key] = _num(m.group(1))
+            fin[key.replace("Cr", "PrevCr")] = _num(m.group(2))
+    return fin
+
+
 def run(http: Http) -> ScrapeResult:
     pdf_path = _find_pdf()
     res = ScrapeResult(feed=FEED, provenance=Provenance.REAL,
@@ -95,6 +113,7 @@ def run(http: Http) -> ScrapeResult:
     stations: list[dict] = []
     reservoirs: list[dict] = []
     thermal: list[dict] = []
+    financials: dict = {}
     fy = None
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
@@ -108,6 +127,8 @@ def run(http: Http) -> ScrapeResult:
             has_thermal = "Plant load factor" in t and "Specific coal" in t and re.search(r"U\s?1\b|U\s?8", t)
             if has_thermal:
                 thermal.extend(_parse_thermal(page))
+            if not financials and "Income from sale of energy" in t:
+                financials = _parse_financials(t)
             if not (has_summary or has_reservoir):
                 continue
             for tbl in page.extract_tables() or []:
@@ -170,5 +191,6 @@ def run(http: Http) -> ScrapeResult:
                     f"{len(thermal)} thermal-unit reliability rows, {len(reservoirs)} reservoirs.")
     else:
         res.note = "Annual Report found but station table not parsed — layout may differ."
-    res.payload = {"fy": fy, "stations": stations, "thermal": thermal, "reservoirs": reservoirs}
+    res.payload = {"fy": fy, "stations": stations, "thermal": thermal,
+                   "reservoirs": reservoirs, "financials": financials}
     return res
