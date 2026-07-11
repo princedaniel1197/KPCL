@@ -130,3 +130,28 @@ Bugs found by systematic review and FIXED (all verified live in browser):
   manifest if missing, so a clean build never breaks; norms.ts stays pure.
 - Verified: 98/98 tests, clean prod build, `/data` LIVE on kpcl.vercel.app showing
   10 public sources with provenance chips.
+
+## Real public-data expansion (session 2026-07-11) — deployed
+Replaced synthetic figures with REAL public data on four more surfaces. Winning
+pattern: government portals block bots / serve scanned PDFs, so we (a) OCR the
+scanned ones and (b) fetch the machine-readable mirrors.
+
+- **KERC tariff norms (REAL, /regulatory)** — `scrapers/kerc` OCRs the scanned
+  BTPS Unit-3 tariff order (PyMuPDF raster → Tesseract). Extracts ONLY prose-stated
+  norms (RoE 15.5%, Gross Station Heat Rate 2166.7 kCal/kWh, order 29.12.2025,
+  ref KERC/F-37/Vol-05/1413) — never jumbled scanned tables. `RealKercNorms`.
+- **CEA daily generation + unit outages (REAL, /plants)** — CEA blocks direct GETs,
+  but the National Power Portal (npp.gov.in) re-publishes CEA's Daily Generation
+  Report as .xls. `scrapers/cea_dgr` parses KARNATAKA thermal rows (BTPS/RTPS/YTPS)
+  + every unit: today prog vs actual, FY-to-date, coal-stock days, and units under
+  forced outage WITH CEA's stated reason (e.g. RTPS U1 down since 15.03.2024 —
+  coal feeding system failure). `RealDailyGeneration`.
+- **CEA daily coal stock vs normative (REAL, /coal)** — `scrapers/cea_coal` parses
+  CEA's Daily Coal Stock Report (Genco=KPCL rows): actual vs normative stock (kT),
+  days, receipt vs burn. All three KPCL thermal stations below normative & depleting
+  (BTPS 58%, RTPS 50%, YTPS 50% of norm as on 10.07.2026). `RealCoalStock`.
+- Manifest now **11 live feeds**. Not achievable from here (recorded honestly):
+  CEA direct (network-blocked — used NPP mirror), KERC RTPS/YTPS/hydro orders
+  (JS-menu archive — needs manual PDF drop), e-Proc tenders (robots-disallowed),
+  UTTAM GCV (access-gated). Monthly CEA generation exists on NPP but only the latest
+  month is exposed (no time series) — skipped as low marginal value.
