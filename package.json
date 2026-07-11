@@ -5,8 +5,7 @@
   "scripts": {
     "predev": "tsx scripts/generate.ts",
     "dev": "next dev",
-    "prebuild": "tsx scripts/generate.ts",
-    "build": "next build",
+    "build": "tsx scripts/generate.ts && next build",
     "start": "next start",
     "lint": "next lint",
     "generate-data": "tsx scripts/generate.ts",
