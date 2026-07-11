@@ -40,12 +40,19 @@ export default function Clearances({ searchParams }: { searchParams: SearchParam
           <section key={r.proposalTitle} className="panel p-4 mb-6 border-l-2 border-success">
             <div className="flex items-center justify-between gap-3 flex-wrap mb-2">
               <h2 className="font-serif text-xl font-semibold">{r.proposalTitle}</h2>
-              <ProvenanceChip provenance="REAL" source="Parivesh / MoEFCC / NBWL" fetched={scrapedClearances.fetched_at.slice(0, 10)} />
+              <ProvenanceChip provenance="REAL" source="Parivesh export" fetched={scrapedClearances.fetched_at.slice(0, 10)} />
             </div>
+            {r.proposalNo && (
+              <div className="flex flex-wrap items-center gap-2 mb-2 text-[0.75rem]">
+                <span className="chip chip-neutral tnum">Parivesh {r.proposalNo}</span>
+                {r.officialStatus && <span className="chip chip-info">{r.officialStatus}</span>}
+                {r.submitted && <span className="text-faint">submitted {r.submitted}</span>}
+              </div>
+            )}
             <p className="text-[0.78rem] text-muted mb-3">
               {r.proponent} · {num(r.capacityMW)} MW
               {r.forestDiversionAcres ? ` · ${num(r.forestDiversionAcres)} acres forest diversion` : ""}
-              {r.treesAffected ? ` · ~${num(r.treesAffected)} trees` : ""}
+              {r.forestHectares ? ` (${num(r.forestHectares)} ha)` : ""}
               {r.sanctuary ? ` · ${r.sanctuary}` : ""}
             </p>
             <div className="overflow-x-auto">

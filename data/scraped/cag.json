@@ -2,7 +2,7 @@
   "feed": "cag",
   "provenance": "REAL",
   "source_url": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
-  "fetched_at": "2026-07-11T12:27:38Z",
+  "fetched_at": "2026-07-11T13:19:25Z",
   "status": "LIVE",
   "robots": "allowed",
   "note": "Live-fetched CAG PDF (28k chars); 3 findings verified present in the document.",

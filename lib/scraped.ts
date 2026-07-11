@@ -31,6 +31,9 @@ export interface ClearanceRecord {
   forestHectares?: number;
   treesAffected?: number;
   sanctuary?: string;
+  proposalNo?: string;
+  officialStatus?: string;
+  submitted?: string;
   gates: { key: string; label: string; status: string; date: string; note: string }[];
   litigation?: string;
   sources?: string[];

@@ -2,20 +2,29 @@
   "feed": "clearances",
   "provenance": "REAL",
   "source_url": "https://parivesh.nic.in/newupgrade/#/trackYourProposal",
-  "fetched_at": "2026-07-11T12:26:11Z",
+  "fetched_at": "2026-07-11T13:16:20Z",
   "status": "LIVE",
   "robots": "allowed",
-  "note": "REAL Sharavathi PSP clearance timeline compiled from public reporting (NBWL approved, Forest Clearance rejected, on hold, HC PIL). Refresh live stage status from Parivesh locally.",
+  "note": "Parivesh export parsed: 1 KPCL proposal(s), Sharavathi real proposal IA/KA/RIV/447282/2023 (ToR Granted).",
   "records": [
     {
       "proposalTitle": "Sharavathi Pumped Storage Project (2000 MW)",
       "proponent": "Karnataka Power Corporation Limited (KPCL)",
       "capacityMW": 2000,
       "forestDiversionAcres": 287,
-      "forestHectares": 57,
-      "treesAffected": 15000,
+      "forestHectares": 140,
       "sanctuary": "Sharavathi Lion-Tailed Macaque Sanctuary (Western Ghats)",
+      "proposalNo": "IA/KA/RIV/447282/2023",
+      "officialStatus": "ToR Granted",
+      "submitted": "21/10/2023",
       "gates": [
+        {
+          "key": "ToR",
+          "label": "Terms of Reference (EC)",
+          "status": "CLEARED",
+          "date": "2023-10",
+          "note": "ToR granted for the EC process (Parivesh: IA/KA/RIV/447282/2023)."
+        },
         {
           "key": "NBWL",
           "label": "National Board for Wildlife",
@@ -28,21 +37,21 @@
           "label": "Forest Clearance (MoEFCC)",
           "status": "BLOCKED",
           "date": "2025-05",
-          "note": "Rejected by MoEFCC citing inadequate compensatory afforestation and landslide risk (May 2025)."
+          "note": "Rejected citing inadequate compensatory afforestation and landslide risk."
         },
         {
           "key": "STATUS",
           "label": "Project status",
           "status": "ON_HOLD",
           "date": "2025-11",
-          "note": "Kept on hold per Government of India order citing environmental damage / biodiversity loss (Nov 2025)."
+          "note": "Kept on hold per Government of India order (Nov 2025)."
         }
       ],
       "litigation": "Karnataka High Court issued notices on a PIL challenging the State Wildlife Board and NBWL in-principle approvals.",
       "provenance": "REAL",
       "sources": [
-        "https://en.wikipedia.org/wiki/Sharavathi_Pumped_Storage_Hydropower_Project",
-        "https://www.landconflictwatch.org/conflicts/environmentalists-raise-concerns-over-sharavathi-pumped-storage-project-in-karnataka"
+        "https://parivesh.nic.in/  (Track Your Proposal export)",
+        "https://en.wikipedia.org/wiki/Sharavathi_Pumped_Storage_Hydropower_Project"
       ]
     }
   ]
