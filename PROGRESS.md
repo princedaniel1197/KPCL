@@ -115,3 +115,18 @@ Bugs found by systematic review and FIXED (all verified live in browser):
 
 - Global controls: plant+period via URL query, lang via cookie; data via static JSON imports (Vercel-safe); `prebuild` regenerates data.
 - After agents finish: run generate+build+tests, fix cross-module link nits (contracts pages link matters to /legal, prefer /legal/[caseId]), verify /coverage, mobile overflow wrappers on /projects.
+
+## Public-data scraper suite (Spec Option 1) — added & deployed
+- `/scrapers` Python suite: `common/` (polite cached HTTP + robots + pdf_text +
+  provenance-stamping json_writer), 9 source scrapers, `run_all.py` + manifest,
+  `requirements.txt`, `SOURCES.md`, `README.md`.
+- THE ONE RULE enforced in code: REAL / CALIBRATED / SYNTHETIC provenance; real
+  names never on synthetic fault values. Live REAL feeds (Parivesh, eCourts, eproc,
+  CEA, KERC) ship as run-locally scrapers marked PENDING — no gov records fabricated.
+- Ships working (offline-safe): CALIBRATED CIL grade bands + prices, railway freight
+  + ₹150/wagon-hr demurrage, CEA/KERC norms; REAL cited CAG findings.
+- App: `components/ui/ProvenanceChip.tsx`, `lib/manifest.ts`, `/data` rebuilt from
+  `data/manifest.json` (the proof screen). Generator writes baseline calibration +
+  manifest if missing, so a clean build never breaks; norms.ts stays pure.
+- Verified: 98/98 tests, clean prod build, `/data` LIVE on kpcl.vercel.app showing
+  10 public sources with provenance chips.
