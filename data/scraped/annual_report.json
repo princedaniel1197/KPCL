@@ -1,0 +1,124 @@
+{
+  "feed": "annual_report",
+  "provenance": "REAL",
+  "source_url": "https://kpcl.karnataka.gov.in (Annual Report PDF)",
+  "fetched_at": "2026-07-11T13:42:33Z",
+  "status": "LIVE",
+  "robots": "",
+  "note": "KPCL Annual Report 2024-25: 15 stations (real generation), 3 reservoirs.",
+  "records": {
+    "fy": "2024-25",
+    "stations": [
+      {
+        "station": "Raichur Thermal Power Station",
+        "plant": "RTPS",
+        "genMU": 8310.35,
+        "genPrevMU": 7875.63
+      },
+      {
+        "station": "Bellary Thermal Power Station",
+        "plant": "BTPS",
+        "genMU": 8182.27,
+        "genPrevMU": 8208.48
+      },
+      {
+        "station": "Sharavathy Generating Station",
+        "plant": "HYDRO",
+        "genMU": 4967.76,
+        "genPrevMU": 3350.3
+      },
+      {
+        "station": "Gerusoppa Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 560.43,
+        "genPrevMU": 344.44
+      },
+      {
+        "station": "Linganamakki Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 175.86,
+        "genPrevMU": 147.36
+      },
+      {
+        "station": "Nagjhari Power House",
+        "plant": "HYDRO",
+        "genMU": 3868.14,
+        "genPrevMU": 2536.27
+      },
+      {
+        "station": "Supa Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 622.27,
+        "genPrevMU": 423.288
+      },
+      {
+        "station": "Kadra Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 485.2,
+        "genPrevMU": 276.5
+      },
+      {
+        "station": "Kodasalli Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 492.84,
+        "genPrevMU": 278.63
+      },
+      {
+        "station": "Varahi Underground Power House",
+        "plant": "HYDRO",
+        "genMU": 1161.05,
+        "genPrevMU": 647.0
+      },
+      {
+        "station": "Mani Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 26.91,
+        "genPrevMU": 8.59
+      },
+      {
+        "station": "Almatti Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 624.3,
+        "genPrevMU": 234.56
+      },
+      {
+        "station": "Ghataprabha Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 97.85,
+        "genPrevMU": 42.75
+      },
+      {
+        "station": "Bhadra Dam Power House",
+        "plant": "HYDRO",
+        "genMU": 58.1,
+        "genPrevMU": 25.73
+      },
+      {
+        "station": "Shivasamudram",
+        "plant": "HYDRO",
+        "genMU": 116.44,
+        "genPrevMU": 156.48
+      }
+    ],
+    "reservoirs": [
+      {
+        "name": "Linganamakki",
+        "fullLevel": "1819 ft",
+        "highestLevel": "1818.10",
+        "pctCapacity": 98.02
+      },
+      {
+        "name": "Supa",
+        "fullLevel": "564 mts",
+        "highestLevel": "562.88",
+        "pctCapacity": 96.7
+      },
+      {
+        "name": "Mani",
+        "fullLevel": "594.36 mts",
+        "highestLevel": "593.49",
+        "pctCapacity": 94.54
+      }
+    ]
+  }
+}

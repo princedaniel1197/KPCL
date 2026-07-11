@@ -8,6 +8,7 @@ import clearancesJson from "@/data/scraped/clearances.json";
 import casesJson from "@/data/scraped/cases.json";
 import cagJson from "@/data/scraped/cag.json";
 import reservoirsJson from "@/data/scraped/reservoirs.json";
+import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
   feed: string;
@@ -69,4 +70,30 @@ export const scrapedReservoirs = env(reservoirsJson);
 
 export function hasReal<T>(e: ScrapedEnvelope<T>): boolean {
   return e.status === "LIVE" && e.records.length > 0;
+}
+
+/* ── KPCL Annual Report: real station generation (records is an object) ── */
+
+export interface StationGen {
+  station: string;
+  plant: string; // RTPS | BTPS | YTPS | HYDRO
+  genMU: number;
+  genPrevMU: number | null;
+}
+export interface AnnualReport {
+  fy: string | null;
+  stations: StationGen[];
+  reservoirs: { name: string; fullLevel: string; highestLevel: string; pctCapacity: number | null }[];
+}
+
+export const scrapedAnnualReport = annualReportJson as {
+  status: string;
+  fetched_at: string;
+  note: string;
+  records: AnnualReport;
+};
+
+export function hasAnnualReport(): boolean {
+  const r = scrapedAnnualReport.records;
+  return scrapedAnnualReport.status === "LIVE" && !!r && Array.isArray(r.stations) && r.stations.length > 0;
 }

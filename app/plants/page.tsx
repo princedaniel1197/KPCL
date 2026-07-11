@@ -10,6 +10,7 @@ import { t } from "@/lib/i18n";
 import { subtitle } from "@/lib/subtitle";
 import { fgdChipMeta, fleetKpis, isThermalScope, scopeQs, unitSummaries } from "@/lib/views/plants";
 import { inrCr, num, pct } from "@/lib/format";
+import { RealGeneration } from "@/components/plants/RealGeneration";
 
 export default function FleetLedger({ searchParams }: { searchParams: SearchParams }) {
   const lang = getLang();
@@ -19,7 +20,8 @@ export default function FleetLedger({ searchParams }: { searchParams: SearchPara
     return (
       <>
         <PageHeader title={t(lang, "fleet")} subtitle={subtitle(lang, scope, "fleet")} />
-        <p className="text-muted text-sm">No thermal units in this plant scope. Switch to a thermal station or All plants.</p>
+        <RealGeneration scope={scope} />
+        <p className="text-muted text-sm mt-6">Per-unit thermal historian applies to RTPS/BTPS/YTPS — switch to a thermal station or All plants for the unit cards.</p>
       </>
     );
   }
@@ -44,6 +46,8 @@ export default function FleetLedger({ searchParams }: { searchParams: SearchPara
           sub="MoEFCC norm deadline past"
         />
       </div>
+
+      <RealGeneration scope={scope} />
 
       <SectionHead title="Generating units" right="click a unit for its historian, outages and emissions" />
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">

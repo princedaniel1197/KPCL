@@ -235,6 +235,12 @@ for (const feed of ["clearances", "cases", "cag", "reservoirs"]) {
     records: [],
   }));
 }
+// Annual report envelope carries an object (not a list) in `records`.
+ensureFile("scraped/annual_report.json", () => ({
+  feed: "annual_report", provenance: "REAL", source_url: "", fetched_at: AS_OF,
+  status: "PENDING", note: "Drop the KPCL Annual Report PDF in scrapers/.manual/ and run the suite.",
+  records: { fy: null, stations: [], reservoirs: [] },
+}));
 
 ensureFile("manifest.json", () => ({
   generatedAt: AS_OF,

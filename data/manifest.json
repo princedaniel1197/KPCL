@@ -1,190 +1,28 @@
 {
-  "generatedAt": "2026-07-11T13:19:27Z",
+  "generatedAt": "2026-07-11T13:31:17Z",
   "sources": [
     {
-      "feed": "clearances",
-      "label": "REAL clearance status",
+      "feed": "annual_report",
+      "label": "REAL KPCL generation/PLF + reservoirs",
       "powers": [
-        "/projects/clearances",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "LIVE",
-      "source_url": "https://parivesh.nic.in/newupgrade/#/trackYourProposal",
-      "robots": "allowed",
-      "note": "Parivesh export parsed: 1 KPCL proposal(s), Sharavathi real proposal IA/KA/RIV/447282/2023 (ToR Granted).",
-      "count": 1,
-      "calibration": false,
-      "fetched_at": "2026-07-11T13:16:20Z"
-    },
-    {
-      "feed": "cases",
-      "label": "REAL case status",
-      "powers": [
-        "/legal",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "LIVE",
-      "source_url": "https://indiankanoon.org/search/",
-      "robots": "DISALLOWED",
-      "note": "Indian Kanoon: 105 reported KPCL matters across 13 queries + 1 curated (Sharavathi PIL). Real parties/forums/dates.",
-      "count": 106,
-      "calibration": false,
-      "fetched_at": "2026-07-11T13:19:02Z"
-    },
-    {
-      "feed": "tenders",
-      "label": "REAL KPCL tenders",
-      "powers": [
-        "/contracts/spend",
-        "/projects/retenders",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "SKIPPED",
-      "source_url": "https://eproc.karnataka.gov.in/eprocurement/common/eproc_tendersfree.seam",
-      "robots": "DISALLOWED",
-      "note": "robots.txt disallows this path for our UA.",
-      "count": 0,
-      "calibration": false,
-      "fetched_at": null
-    },
-    {
-      "feed": "cea",
-      "label": "REAL project status + CALIBRATED norms",
-      "powers": [
-        "/projects",
+        "/plants",
         "/plants/hydro",
         "/data"
       ],
       "provenance": "REAL",
-      "status": "PENDING",
-      "source_url": "https://cea.nic.in/broad-status-report/?lang=en",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "Pin the current CEA Broad-Status PDF URL locally, then extract KPCL/PSP project rows. No project status fabricated.",
-      "count": 0,
-      "calibration": false,
-      "fetched_at": null
-    },
-    {
-      "feed": "norms",
-      "label": "REAL project status + CALIBRATED norms",
-      "powers": [
-        "/projects",
-        "/plants/hydro",
-        "/data"
-      ],
-      "provenance": "CALIBRATED",
       "status": "LIVE",
-      "source_url": "https://cea.nic.in/broad-status-report/?lang=en + KERC tariff norms",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "CEA design norms + KERC O&M escalation. Notified baseline; refresh from the CEA/KERC PDFs when pinned. Reconciles engine ↔ generator thresholds.",
-      "count": 2,
-      "calibration": true,
-      "fetched_at": "2026-07-11T13:19:24Z"
-    },
-    {
-      "feed": "cag",
-      "label": "REAL published audit findings",
-      "powers": [
-        "/regulatory/audit-paras",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "LIVE",
-      "source_url": "https://cag.gov.in/uploads/download_audit_report/2019/Overview_of_Report_no_5_of_2019_PSU_Government_of_Karnataka.pdf",
-      "robots": "allowed",
-      "note": "Live-fetched CAG PDF (28k chars); 3 findings verified present in the document.",
+      "source_url": "https://kpcl.karnataka.gov.in (Annual Report PDF)",
+      "robots": "",
+      "note": "KPCL Annual Report 2024-25: 18 stations (real generation), 10 reservoirs.",
       "count": 3,
       "calibration": false,
-      "fetched_at": "2026-07-11T13:19:25Z"
-    },
-    {
-      "feed": "kerc",
-      "label": "REAL approved charges + CALIBRATED norm rates",
-      "powers": [
-        "/regulatory",
-        "/regulatory/costing"
-      ],
-      "provenance": "REAL",
-      "status": "PENDING",
-      "source_url": "https://www.karnataka.gov.in/kerc/",
-      "robots": "robots.txt unreachable (treated as allow for public GET)",
-      "note": "Pin the specific KERC tariff-order PDF locally; approved charges are REAL, norm rates feed calibration.",
-      "count": 0,
-      "calibration": false,
-      "fetched_at": null
-    },
-    {
-      "feed": "coal_prices",
-      "label": "CALIBRATED CIL grade bands + prices",
-      "powers": [
-        "/coal",
-        "/data"
-      ],
-      "provenance": "CALIBRATED",
-      "status": "LIVE",
-      "source_url": "https://coal.gov.in/en/major-statistics/coal-grade",
-      "robots": "allowed",
-      "note": "Real CIL grade GCV bands; representative notified pithead levels. Refresh from the Ministry of Coal notified-price circular when reachable.",
-      "count": 1,
-      "calibration": true,
-      "fetched_at": "2026-07-11T13:19:25Z"
-    },
-    {
-      "feed": "freight",
-      "label": "CALIBRATED railway freight + demurrage",
-      "powers": [
-        "/coal/demurrage",
-        "/data"
-      ],
-      "provenance": "CALIBRATED",
-      "status": "LIVE",
-      "source_url": "https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,1,304,366,554",
-      "robots": "allowed",
-      "note": "Demurrage ₹150/wagon-hour (Railway Board). Distance-slab freight is representative; refresh from the Railway Board freight circular.",
-      "count": 3,
-      "calibration": true,
-      "fetched_at": "2026-07-11T13:19:26Z"
-    },
-    {
-      "feed": "reservoirs",
-      "label": "REAL reservoir levels (Linganamakki/Supa)",
-      "powers": [
-        "/plants/hydro",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "LIVE",
-      "source_url": "https://www.oneindia.com/karnataka-dam-water-level-today-ds2/",
-      "robots": "DISALLOWED",
-      "note": "REAL Linganamakki + Supa reservoir levels from public dam-level reporting. Refresh from CWC / Karnataka dam-level source when reachable.",
-      "count": 2,
-      "calibration": false,
-      "fetched_at": "2026-07-11T13:19:26Z"
-    },
-    {
-      "feed": "uttam",
-      "label": "REAL third-party GCV (if public)",
-      "powers": [
-        "/coal/ledger",
-        "/data"
-      ],
-      "provenance": "REAL",
-      "status": "SKIPPED",
-      "source_url": "https://uttam.coalindia.in/",
-      "robots": "DISALLOWED",
-      "note": "UTTAM sampling views require login; skipped by guardrail (no auth). If a public auth-free GCV summary is found, implement parse() as REAL.",
-      "count": 0,
-      "calibration": false,
-      "fetched_at": null
+      "fetched_at": "2026-07-11T13:31:17Z"
     }
   ],
   "summary": {
-    "live": 7,
-    "pending": 2,
-    "skipped": 2,
+    "live": 1,
+    "pending": 0,
+    "skipped": 0,
     "stale": 0,
     "error": 0
   }

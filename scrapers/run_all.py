@@ -46,6 +46,7 @@ SCRAPERS = [
     ("coalprices", "CALIBRATED CIL grade bands + prices", ["/coal", "/data"]),
     ("freight", "CALIBRATED railway freight + demurrage", ["/coal/demurrage", "/data"]),
     ("cwc", "REAL reservoir levels (Linganamakki/Supa)", ["/plants/hydro", "/data"]),
+    ("annualreport", "REAL KPCL generation/PLF + reservoirs", ["/plants", "/plants/hydro", "/data"]),
     ("uttam", "REAL third-party GCV (if public)", ["/coal/ledger", "/data"]),
 ]
 
