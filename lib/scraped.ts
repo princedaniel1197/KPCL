@@ -98,12 +98,28 @@ export interface AnnualFinancials {
   pbtCr?: number;
   pbtPrevCr?: number;
 }
+export interface AnnualManpower {
+  totalStrength?: number;
+  totalStrengthPrev?: number;
+  corporate?: number;
+  corporatePrev?: number;
+  workmen?: number;
+  workmenPrev?: number;
+  entries?: number;
+  entriesPrev?: number;
+  exits?: number;
+  exitsPrev?: number;
+  scPct?: number;
+  stPct?: number;
+  pwdPct?: number;
+}
 export interface AnnualReport {
   fy: string | null;
   stations: StationGen[];
   thermal: ThermalUnitReal[];
   reservoirs: { name: string; fullLevel: string; highestLevel: string; pctCapacity: number | null }[];
   financials: AnnualFinancials;
+  manpower: AnnualManpower;
 }
 
 export const scrapedAnnualReport = annualReportJson as {

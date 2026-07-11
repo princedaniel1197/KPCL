@@ -79,6 +79,25 @@ def _parse_thermal(page) -> list[dict]:
     return out
 
 
+def _parse_manpower(text: str) -> dict:
+    """Parse the 'Employees Strength' table (current + prior year)."""
+    mp: dict = {}
+    counts = {"totalStrength": r"Total Strength", "corporate": r"Corporate",
+              "workmen": r"Workmen", "entries": r"Entry of Employees", "exits": r"Exit of Employees"}
+    for key, lab in counts.items():
+        m = re.search(lab + r"\s+(\d[\d,]*)\s+(\d[\d,]*)", text)
+        if m:
+            mp[key] = int(m.group(1).replace(",", ""))
+            mp[key + "Prev"] = int(m.group(2).replace(",", ""))
+    pcts = {"scPct": r"SC Employees.{0,30}Percentage", "stPct": r"ST Employees.{0,30}Percentage",
+            "pwdPct": r"Handicapped Employees.{0,20}Percentage"}
+    for key, lab in pcts.items():
+        m = re.search(lab + r"\s+([\d.]+)\s+([\d.]+)", text)
+        if m:
+            mp[key] = float(m.group(1))
+    return mp
+
+
 def _parse_financials(text: str) -> dict:
     """Parse the ₹-crore financial-highlights table (standalone + prior year).
     Columns are: 2024-25 standalone | 2024-25 consol | 2023-24 standalone | ..."""
@@ -114,9 +133,10 @@ def run(http: Http) -> ScrapeResult:
     reservoirs: list[dict] = []
     thermal: list[dict] = []
     financials: dict = {}
+    manpower: dict = {}
     fy = None
     with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
+        for idx, page in enumerate(pdf.pages):
             t = page.extract_text() or ""
             if fy is None:
                 m = re.search(r"ANNUAL REPORT (\d{4}-\d{2})", t)
@@ -129,6 +149,12 @@ def run(http: Http) -> ScrapeResult:
                 thermal.extend(_parse_thermal(page))
             if not financials and "Income from sale of energy" in t:
                 financials = _parse_financials(t)
+            if not manpower and "Total Strength" in t and "Employees" in t:
+                manpower = _parse_manpower(t)
+            # Stop once the whole cluster (operational tables + manpower, ~page 80)
+            # is collected, or after a safety cap so we never scan all 900+ pages.
+            if (stations and reservoirs and manpower) or idx > 130:
+                break
             if not (has_summary or has_reservoir):
                 continue
             for tbl in page.extract_tables() or []:
@@ -170,11 +196,6 @@ def run(http: Http) -> ScrapeResult:
                             "highestLevel": cells[3] if len(cells) > 3 else "",
                             "pctCapacity": _last_num(" ".join(cells[-2:])),
                         })
-            # The generation/thermal/reservoir tables are clustered together; once
-            # the station summary is parsed, stop (avoids re-reading ~900 more pages).
-            if stations and reservoirs:
-                break
-
     # dedupe by station/name (tables can repeat across the report)
     seen: set[str] = set()
     stations = [s for s in stations if not (s["station"] in seen or seen.add(s["station"]))]
@@ -192,5 +213,5 @@ def run(http: Http) -> ScrapeResult:
     else:
         res.note = "Annual Report found but station table not parsed — layout may differ."
     res.payload = {"fy": fy, "stations": stations, "thermal": thermal,
-                   "reservoirs": reservoirs, "financials": financials}
+                   "reservoirs": reservoirs, "financials": financials, "manpower": manpower}
     return res

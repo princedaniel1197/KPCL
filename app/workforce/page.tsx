@@ -25,6 +25,7 @@ import {
   scopeQs,
 } from "@/lib/views/workforce";
 import { dateFmt, num, pct } from "@/lib/format";
+import { RealManpower } from "@/components/workforce/RealManpower";
 
 const EXPOSURE_DANGER_PCT = 22;
 
@@ -55,6 +56,8 @@ export default function RetirementWavePage({ searchParams }: { searchParams: Sea
         <KpiTile label="Retiring ≤5 yr" value={num(retiring5y.length)} tone="danger" sub={`${pct((retiring5y.length / Math.max(1, emps.length)) * 100, 1)} of scoped headcount`} />
         <KpiTile label="SPOF roles" value={num(spof.length)} tone="danger" sub="sole incumbent · no successor · retiring ≤24 mo" />
       </div>
+
+      <RealManpower />
 
       <SectionHead title="Age pyramid" right="headcount by five-year band" />
       <div className="panel p-4">

@@ -2,7 +2,7 @@
   "feed": "annual_report",
   "provenance": "REAL",
   "source_url": "https://kpcl.karnataka.gov.in (Annual Report PDF)",
-  "fetched_at": "2026-07-11T14:03:29Z",
+  "fetched_at": "2026-07-11T14:33:16Z",
   "status": "LIVE",
   "robots": "",
   "note": "KPCL Annual Report 2024-25: 15 stations (real generation), 5 thermal-unit reliability rows, 3 reservoirs.",
@@ -171,6 +171,21 @@
       "operatingProfitPrevCr": 5668.93,
       "pbtCr": 927.95,
       "pbtPrevCr": 1495.68
+    },
+    "manpower": {
+      "totalStrength": 3531,
+      "totalStrengthPrev": 3684,
+      "corporate": 1791,
+      "corporatePrev": 1790,
+      "workmen": 1737,
+      "workmenPrev": 1892,
+      "entries": 14,
+      "entriesPrev": 36,
+      "exits": 170,
+      "exitsPrev": 187,
+      "scPct": 18.65,
+      "stPct": 4.5,
+      "pwdPct": 1.628
     }
   }
 }
