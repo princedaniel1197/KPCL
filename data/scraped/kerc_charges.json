@@ -1,0 +1,71 @@
+{
+  "feed": "kerc_charges",
+  "provenance": "REAL",
+  "source_url": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf (KERC FY24 tariff order — Approved Power Purchase (Annexure-2))",
+  "fetched_at": "2026-07-11T15:34:48Z",
+  "status": "LIVE",
+  "robots": "allowed",
+  "note": "KERC-approved per-station charges (FY24) for 5 KPCL thermal stations: variable ₹4.07–4.84/unit. Real approved rates.",
+  "records": [
+    {
+      "plant": "RTPS",
+      "station": "RTPS 1-7 (7x210)",
+      "energyMU": 296.09,
+      "capacityChargesCr": 52.08,
+      "variableChargeCr": 134.04,
+      "variableChargePerUnit": 4.53,
+      "totalCostCr": 186.12,
+      "totalCostPerUnit": 6.29,
+      "source": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf",
+      "provenance": "REAL"
+    },
+    {
+      "plant": "RTPS",
+      "station": "RTPS 8 (1x250)",
+      "energyMU": 57.78,
+      "capacityChargesCr": 13.68,
+      "variableChargeCr": 26.17,
+      "variableChargePerUnit": 4.53,
+      "totalCostCr": 39.85,
+      "totalCostPerUnit": 6.9,
+      "source": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf",
+      "provenance": "REAL"
+    },
+    {
+      "plant": "BTPS",
+      "station": "BTPS 1 (1x500)",
+      "energyMU": 72.0,
+      "capacityChargesCr": 21.06,
+      "variableChargeCr": 33.17,
+      "variableChargePerUnit": 4.61,
+      "totalCostCr": 54.23,
+      "totalCostPerUnit": 7.53,
+      "source": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf",
+      "provenance": "REAL"
+    },
+    {
+      "plant": "BTPS",
+      "station": "BTPS 2 (1x500)",
+      "energyMU": 89.65,
+      "capacityChargesCr": 25.44,
+      "variableChargeCr": 43.39,
+      "variableChargePerUnit": 4.84,
+      "totalCostCr": 68.83,
+      "totalCostPerUnit": 7.68,
+      "source": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf",
+      "provenance": "REAL"
+    },
+    {
+      "plant": "BTPS",
+      "station": "BTPS 3 (1x700)",
+      "energyMU": 194.09,
+      "capacityChargesCr": 44.58,
+      "variableChargeCr": 78.94,
+      "variableChargePerUnit": 4.07,
+      "totalCostCr": 123.52,
+      "totalCostPerUnit": 6.36,
+      "source": "https://kerc.karnataka.gov.in/uploads/77431683892954.pdf",
+      "provenance": "REAL"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import reservoirsJson from "@/data/scraped/reservoirs.json";
 import kercJson from "@/data/scraped/kerc.json";
 import ceaDgrJson from "@/data/scraped/cea_dgr.json";
 import ceaCoalJson from "@/data/scraped/cea_coal.json";
+import kercChargesJson from "@/data/scraped/kerc_charges.json";
 import annualReportJson from "@/data/scraped/annual_report.json";
 
 export interface ScrapedEnvelope<T = Record<string, unknown>> {
@@ -113,6 +114,19 @@ export const scrapedCases = env<CaseRecord>(casesJson);
 export const scrapedCag = env<CagRecord>(cagJson);
 export const scrapedReservoirs = env(reservoirsJson);
 export const scrapedKerc = env<KercNorm>(kercJson);
+
+export interface KercCharge {
+  plant: string; // RTPS | BTPS | YTPS
+  station: string;
+  energyMU: number;
+  capacityChargesCr: number;
+  variableChargeCr: number;
+  variableChargePerUnit: number;
+  totalCostCr: number;
+  totalCostPerUnit: number;
+  source: string;
+}
+export const scrapedKercCharges = env<KercCharge>(kercChargesJson);
 export const scrapedCeaDgr = env<CeaDgrStation>(ceaDgrJson);
 
 export interface CeaCoalStation {

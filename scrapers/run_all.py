@@ -45,6 +45,7 @@ SCRAPERS = [
     ("cea_coal", "REAL daily coal stock vs normative (CEA via NPP)", ["/coal", "/data"]),
     ("cag", "REAL published audit findings", ["/regulatory/audit-paras", "/data"]),
     ("kerc", "REAL approved charges + CALIBRATED norm rates", ["/regulatory", "/regulatory/costing"]),
+    ("kerc_charges", "REAL KERC-approved per-station ₹/unit charges", ["/regulatory"]),
     ("coalprices", "CALIBRATED CIL grade bands + prices", ["/coal", "/data"]),
     ("freight", "CALIBRATED railway freight + demurrage", ["/coal/demurrage", "/data"]),
     ("cwc", "REAL reservoir levels (Linganamakki/Supa)", ["/plants/hydro", "/data"]),
